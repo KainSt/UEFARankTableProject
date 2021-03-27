@@ -1,99 +1,49 @@
 public class ResultObjectManager {
 
-/*
-    public oneMatch discoverMatchResult (String homeTeamName, String guestTeamName, String matchType) {
-        String matchResult = homeTeamName + " " + guestTeamName;
-        int homeTeamScore = 0, guestTeamScore = 0;
-        int homeTeamYellowCard =0; int guestTeamYellowCard = 0;
-        int homeTeamRedCard = 0; int guestTeamRedCard = 0;
+    public static String discoverMatchResult(OneMatch game) {
+        String matchResult = game.homeTeamName + " " + game.guestTeamName;
+        int homeTeamScore = game.homeTeamScore, guestTeamScore = game.guestTeamScore;
+        int homeTeamYellowCard = 0;
+        int guestTeamYellowCard = 0;
+        int homeTeamRedCard = 0;
+        int guestTeamRedCard = 0;
+        int timeForPlay = game.basicTime;
 
-        int addTime = 0;
-        switch (matchType) {
-            case ("mainTime"):
-                System.out.println("Main Time 1st Half");
-                for (int t=0; t <=44+addTime; t++) {
-                    for (int dexT = 10; dexT <= 50; dexT = dexT + 10) {
-                        if (MatchProbability.isYellowCard()) {
-                            homeTeamYellowCard++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "Yellow Card");
-                        }
-                        if (MatchProbability.isRedCard()) {
-                            homeTeamRedCard++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "Red Card");
-                        }
-                        if (MatchProbability.isGoal()) {
-                            homeTeamScore++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "GOAL!!");
-                        }
-                        if (MatchProbability.isYellowCard()) {
-                            guestTeamYellowCard++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "Yellow Card");
-                        }
-                        if (MatchProbability.isRedCard()) {
-                            guestTeamRedCard++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "Red Card");
-                        }
-                        if (MatchProbability.isGoal()) {
-                            guestTeamScore++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "GOAL!!");
-                        }
-                    }
-
-                    if (t == 44) {
-                        addTime = (int) (Math.random() * 5)+1;
-                        System.out.println(addTime);
-
-                    }
+        for (int t = 0; t <= timeForPlay; t++) {
+            for (int dexT = 10; dexT <= 50; dexT = dexT + 10) {
+                if (MatchProbability.isYellowCard()) {
+                    homeTeamYellowCard++;
+                    System.out.println(t + ":" + dexT + " " + game.homeTeamName + " " + "Yellow Card");
                 }
-                System.out.println(homeTeamName + ". Yellow Card: " + homeTeamYellowCard + "; " + "Red Card: " + homeTeamRedCard + ".");
-                System.out.println(guestTeamName + ". Yellow Card: " + guestTeamYellowCard + "; " + "Red Card: " + guestTeamRedCard + ".");
-
-                System.out.println("Main Time 2st Half");
-                for (int t=45; t <=90+addTime; t++) {
-                    for (int dexT = 10; dexT <= 50; dexT = dexT + 10) {
-                        if (MatchProbability.isYellowCard()) {
-                            homeTeamYellowCard++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "Yellow Card");
-                        }
-                        if (MatchProbability.isRedCard()) {
-                            homeTeamRedCard++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "Red Card");
-                        }
-                        if (MatchProbability.isGoal()) {
-                            homeTeamScore++;
-                            System.out.println(t + ":" + dexT + " " + homeTeamName + " " + "GOAL!!");
-                        }
-                        if (MatchProbability.isYellowCard()) {
-                            guestTeamYellowCard++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "Yellow Card");
-                        }
-                        if (MatchProbability.isRedCard()) {
-                            guestTeamRedCard++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "Red Card");
-                        }
-                        if (MatchProbability.isGoal()) {
-                            guestTeamScore++;
-                            System.out.println(t + ":" + dexT + " " + guestTeamName + " " + "GOAL!!");
-                        }
-                    }
-
-                    if (t == 89) {
-                        addTime = (int) (Math.random() * 5)+1;
-                        System.out.println(addTime);
-
-                    }
+                if (MatchProbability.isRedCard()) {
+                    homeTeamRedCard++;
+                    System.out.println(t + ":" + dexT + " " + game.homeTeamName + " " + "Red Card");
                 }
-                System.out.println(homeTeamName + ". Yellow Card: " + homeTeamYellowCard + "; " + "Red Card: " + homeTeamRedCard + ".");
-                System.out.println(guestTeamName + ". Yellow Card: " + guestTeamYellowCard + "; " + "Red Card: " + guestTeamRedCard + ".");
-                matchResult = matchResult + "  " + homeTeamScore + " " + guestTeamScore;
-                if (homeTeamScore == guestTeamScore) discoverMatchResult(homeTeamName,guestTeamName, "penalties");
-                break;
+                if (MatchProbability.isGoal()) {
+                    homeTeamScore++;
+                    System.out.println(t + ":" + dexT + " " + game.homeTeamName + " " + "GOAL!!");
+                }
+                if (MatchProbability.isYellowCard()) {
+                    guestTeamYellowCard++;
+                    System.out.println(t + ":" + dexT + " " + game.guestTeamName + " " + "Yellow Card");
+                }
+                if (MatchProbability.isRedCard()) {
+                    guestTeamRedCard++;
+                    System.out.println(t + ":" + dexT + " " + game.guestTeamName + " " + "Red Card");
+                }
+                if (MatchProbability.isGoal()) {
+                    guestTeamScore++;
+                    System.out.println(t + ":" + dexT + " " + game.guestTeamName + " " + "GOAL!!");
+                }
+            }
+        }
 
-            case ("extraTime"):
-                System.out.println("Extra Time");
-                break;
+            System.out.println(game.homeTeamName + ". Yellow Card: " + homeTeamYellowCard + "; " + "Red Card: " + homeTeamRedCard + ".");
+            System.out.println(game.guestTeamName + ". Yellow Card: " + guestTeamYellowCard + "; " + "Red Card: " + guestTeamRedCard + ".");
+            matchResult = matchResult + "  " + homeTeamScore + " " + guestTeamScore;
 
-            case ("penalties"):
+
+      /*
                 System.out.println("After Match Penalties");
                 System.out.println(matchResult);
                 ////проверяем первую серию из 5 ударов, которая должна преваться, если нет шансов догнать соперника
@@ -126,9 +76,10 @@ public class ResultObjectManager {
                 matchResult = matchResult + "  " + homeTeamScore + " " + guestTeamScore;
                 break;
         }
-
-        return matchResult;
-    }
 */
-}
+            return matchResult;
+        }
+
+    }
+
 

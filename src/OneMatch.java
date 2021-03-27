@@ -1,5 +1,5 @@
 public class OneMatch {
-    int basicTime, addTime;
+    int basicTime;
     String homeTeamName, guestTeamName;
     int homeTeamScore, guestTeamScore;
 
