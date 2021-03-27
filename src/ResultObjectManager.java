@@ -1,6 +1,6 @@
 public class ResultObjectManager {
 
-
+/*
     public oneMatch discoverMatchResult (String homeTeamName, String guestTeamName, String matchType) {
         String matchResult = homeTeamName + " " + guestTeamName;
         int homeTeamScore = 0, guestTeamScore = 0;
@@ -129,6 +129,6 @@ public class ResultObjectManager {
 
         return matchResult;
     }
-
+*/
 }
 
