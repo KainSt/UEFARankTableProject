@@ -1,17 +1,17 @@
 public class OneMatch {
-    int basicTime;
-    String homeTeamName, guestTeamName;
+    String homeTeamName, guestTeamName, typeGame;
     int homeTeamScore, guestTeamScore;
 
 
-    public OneMatch (String homeTeamName, String guestTeamName, int homeTeamScore, int guestTeamScore, int basicTime){
+    public OneMatch(String homeTeamName, String guestTeamName, int homeTeamScore, int guestTeamScore, String typeGame) {
         this.homeTeamName = homeTeamName;
         this.guestTeamName = guestTeamName;
         this.homeTeamScore = homeTeamScore;
         this.guestTeamScore = guestTeamScore;
-        this.basicTime = basicTime;
+        this.typeGame = typeGame;
     }
-// проверка работы в новом бренче. хочу понять, как откатиться назад
+
+   }
 
 
-}
+
