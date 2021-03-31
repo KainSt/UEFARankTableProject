@@ -4,10 +4,12 @@ public class TrainingStart {
         //System.out.println(ResultManager.discoverMatchResult("Inter","PSV","mainTime"));
         System.out.println("Generate object OneMatch");
 
-        OneMatch Game1 = new OneMatch("Roma","Chelsea",0,0,"Regular");
+        OneMatch Game1 = new OneMatch("Roma","Chelsea","Regular");
         ResultObjectManager.discoverMatchResult(Game1);
-System.out.println( Game1.homeTeamScore);
-        System.out.println( Game1.guestTeamScore);
+
+
+       /// System.out.println( Game1.homeTeamScore);
+        // System.out.println( Game1.guestTeamScore);
     }
 }
 

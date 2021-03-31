@@ -1,4 +1,4 @@
-public class TeamInGame {
-    String teamName;
-    int teamScore;
-}
+//public class TeamInGame {
+  //  String teamName;
+   // int teamScore;
+//}

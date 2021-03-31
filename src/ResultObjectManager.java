@@ -1,16 +1,16 @@
 public class ResultObjectManager {
 
-    public static void simGame(TeamInGame team1, TeamInGame team2, int t) {
-        for (int x = 0; x < t; x++) {
-            System.out.println(x);
+    public static void simGame(OneMatch game, int startT, int finishT) {
+        for (int x = startT; x < finishT; x++) {
+            //System.out.println(x);
             for (int dexX = 0; dexX < 50; dexX = dexX + 10) {
                 if (MatchProbability.isGoal()) {
-                    team1.teamScore++;
-                    System.out.println(x + ":" + dexX + " " + team1.teamName + " " + "GOAL!!");
+                    game.homeTeamScore++;
+                    System.out.println(x + ":" + dexX + " " + game.homeTeamName + " " + "GOAL!!");
                 }
                     if (MatchProbability.isGoal()) {
-                        team2.teamScore++;
-                        System.out.println(x + ":" + dexX + " " + team2.teamName + " " + "GOAL!!");
+                        game.guestTeamScore++;
+                        System.out.println(x + ":" + dexX + " " + game.guestTeamName + " " + "GOAL!!");
                     }
                 }
             }
@@ -20,7 +20,7 @@ public class ResultObjectManager {
             public static void discoverMatchResult (OneMatch game){
                 String matchResult = game.homeTeamName + " " + game.guestTeamName;
 
-                TeamInGame HomeTeam = new TeamInGame();
+              /*TeamInGame HomeTeam = new TeamInGame();
                 HomeTeam.teamName = game.homeTeamName;
                 HomeTeam.teamScore = game.homeTeamScore;
 
@@ -28,14 +28,19 @@ public class ResultObjectManager {
                 GuestTeam.teamName = game.guestTeamName;
                 GuestTeam.teamScore = game.guestTeamScore;
 
-
+*/
                 switch (game.typeGame) {
                     case ("Regular"):
-                    simGame(HomeTeam, GuestTeam, 45+ (int) (Math.random()*5+1));
-                    simGame(HomeTeam, GuestTeam, 45+ (int) (Math.random()*5+1));
-System.out.println(matchResult + "  " + HomeTeam.teamScore + " " + GuestTeam.teamScore);
-                  game.homeTeamScore = HomeTeam.teamScore;
-                  game.guestTeamScore = GuestTeam.teamScore;
+                    simGame(game, 0, 45);// первый тайм 0-45 минут
+                    int addT = (int)(Math.random() * 4);
+                    System.out.println("Add time is  " + addT);
+                    simGame(game, 45, 45 + addT); // добавленное время
+                    simGame(game, 45,90); // второй тайм 45-90 минут
+                    addT = (int)(Math.random() * 4);
+                    System.out.println("Add time is  " + addT);
+                    simGame(game, 90,90+addT); // добавленное время
+System.out.println(matchResult + "  " + game.homeTeamScore + " " + game.guestTeamScore);
+
 break;
 
 
