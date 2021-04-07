@@ -34,7 +34,7 @@ public class ResultObjectManager {
 
 
             public static void discoverMatchResult (OneMatch game){
-                String matchResult = game.homeTeamName + " " + game.guestTeamName;
+                //String matchResult = game.homeTeamName + " " + game.guestTeamName;
 
               /*TeamInGame HomeTeam = new TeamInGame();
                 HomeTeam.teamName = game.homeTeamName;
@@ -59,11 +59,14 @@ public class ResultObjectManager {
                     System.out.println("Add time is  " + addT);
                     simGame(game, 90,90+addT); // добавленное время
 
-System.out.println(matchResult + "  " + game.homeTeamScore + " " + game.guestTeamScore);
+System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
+
+                MethodResult.getValues();
 
                 break;
+                    case ("Final"):
 
-
+                        break;
                 }
             }
         }

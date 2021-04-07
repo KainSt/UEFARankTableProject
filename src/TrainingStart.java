@@ -8,6 +8,9 @@ public class TrainingStart {
         ResultObjectManager.discoverMatchResult(Game1);
 
 
+
+
+
        /// System.out.println( Game1.homeTeamScore);
         // System.out.println( Game1.guestTeamScore);
     }
