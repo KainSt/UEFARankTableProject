@@ -4,7 +4,7 @@ public class TrainingStart {
         //System.out.println(ResultManager.discoverMatchResult("Inter","PSV","mainTime"));
         System.out.println("Generate object OneMatch");
 
-        OneMatch Game1 = new OneMatch("Roma","Chelsea","Regular");
+        OneMatch Game1 = new OneMatch("Roma","Chelsea","Final");
         ResultObjectManager.discoverMatchResult(Game1);
 
 

@@ -21,8 +21,8 @@ public class MethodResult {
     int getCount() {return count;}
     String getName2() {return name2;}
 */
-    static MethodResult getValues() {
-        return new MethodResult(OneMatch game);
+    static MethodResult getValues(OneMatch game) {
+        return new MethodResult(game);
     }
 
 }
