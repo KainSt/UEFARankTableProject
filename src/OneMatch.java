@@ -1,6 +1,6 @@
 public class OneMatch {
     String homeTeamName, guestTeamName, typeGame;
-    int homeTeamScore, guestTeamScore, homeTeamYellowCard, homeTeamRedCard,
+    int homeTeamScore, guestTeamScore, homeTeamYellowCard, homeTeamRedCard,homeTeamPenScore, guestTeamPenScore,
             guestTeamYellowCard, guestTeamRedCard;
 
 
@@ -14,6 +14,8 @@ public class OneMatch {
         homeTeamRedCard= 0;
         guestTeamYellowCard= 0;
         guestTeamRedCard = 0;
+        homeTeamPenScore = 0;
+        guestTeamPenScore = 0;
     }
 
    }

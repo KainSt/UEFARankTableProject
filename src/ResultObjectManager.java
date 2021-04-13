@@ -64,48 +64,78 @@ public class ResultObjectManager {
                 MethodResult.getValues(game);
 
                 break;
+
+            case ("Extra Time"):
+                System.out.println("Extra Time" );
+                simGame(game, 90, 105);// первый тайм 0-45 минут
+
+                addT = (int) (Math.random() * 4);
+                System.out.println("Add time is  " + addT);
+                simGame(game, 105, 105 + addT); // добавленное время
+
+                simGame(game, 105, 120); // второй тайм 45-90 минут
+
+                addT = (int) (Math.random() * 4);
+                System.out.println("Add time is  " + addT);
+                simGame(game, 120, 120 + addT); // добавленное время
+
+                System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
+
+                MethodResult.getValues(game);
+
+                if (game.homeTeamScore == game.guestTeamScore){
+                    game.typeGame = "Penalties";
+                    ResultObjectManager.discoverMatchResult(game);
+
+                }
+
+                break;
+
             case ("Final"):
                 game.typeGame = "Regular";
                 ResultObjectManager.discoverMatchResult(game);
 
              if (game.homeTeamScore == game.guestTeamScore){
-                 game.typeGame = "Penalties";
+                 game.typeGame = "Extra Time";
                  ResultObjectManager.discoverMatchResult(game);
              }
                 break;
 
             case ("Penalties"):
                 System.out.println("After Match Penalties");
+
                 //System.out.println(matchResult);
                 ////проверяем первую серию из 5 ударов, которая должна преваться, если нет шансов догнать соперника
                 /// по кол-ву набранных очков. Шанс на гол - это кол-во оставшихся ударов.
 
                 for (int k = 1; k <= 5; k++) {
                     /// проверка шанса на победу в серии пенальти
-                    if ((game.homeTeamScore + 6 - k) < game.guestTeamScore) break;
+                    if ((game.homeTeamPenScore + 6 - k) < game.guestTeamPenScore) break;
                     /// отрабатываем первые пять ударов у каждой команды
                     if (MatchProbability.isPenaltyGoal()) {
-                        game.homeTeamScore++;
+                        game.homeTeamPenScore++;
                     }
-                    if ((game.guestTeamScore + 6 - k) < game.homeTeamScore) break;
+                    if ((game.guestTeamPenScore + 6 - k) < game.homeTeamPenScore) break;
                     if (MatchProbability.isPenaltyGoal()) {
-                        game.guestTeamScore++;
+                        game.guestTeamPenScore++;
                     }
 
                 }
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
                 /// отрабатываем доп.удары, если кол-во забитых пенальти одинаковое
+                System.out.println("(по пенальти " + game.homeTeamPenScore + "  " + game.guestTeamPenScore+" )");
                 System.out.println("Extra After Match Penalties");
-                while (game.homeTeamScore == game.guestTeamScore) {
+                while (game.homeTeamPenScore == game.guestTeamPenScore) {
                     if (MatchProbability.isPenaltyGoal()) {
-                        game.homeTeamScore++;
+                        game.homeTeamPenScore++;
                     }
                     if (MatchProbability.isPenaltyGoal()) {
-                        game.guestTeamScore++;
+                        game.guestTeamPenScore++;
                     }
 
                 }
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
+                System.out.println("(по пенальти " + game.homeTeamPenScore + "  " + game.guestTeamPenScore +" )");
                 break;
         }
     }
