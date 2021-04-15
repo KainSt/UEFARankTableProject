@@ -1,10 +1,11 @@
-public class MethodResult {
+public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame;
     int homeTeamScore, guestTeamScore, homeTeamYellowCard, homeTeamRedCard, homeTeamPenScore, guestTeamPenScore,
             guestTeamYellowCard, guestTeamRedCard;
 
-    MethodResult(OneMatch game) {/// конструктор класса
+    ResultOfTheGame(OneMatch game) {/// конструктор класса
         // Команда, Игр, Выигранные, Ничья, Проигранные, ГЗ, ГП, очки, ЖК, КК.
+
         homeTeamName = game.homeTeamName;
         guestTeamName = game.guestTeamName;
         homeTeamPenScore = game.homeTeamPenScore;
@@ -20,8 +21,8 @@ public class MethodResult {
     }
 
 
-    static MethodResult getValues(OneMatch game) {
-        return new MethodResult(game);
+    static ResultOfTheGame getValues(OneMatch game) {
+        return new ResultOfTheGame(game);
     }
 
 }

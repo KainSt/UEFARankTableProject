@@ -34,9 +34,9 @@ public class ResultObjectManager {
 
 
     public static void discoverMatchResult(OneMatch game) {
-        //String matchResult = game.homeTeamName + " " + game.guestTeamName;
+        /*String matchResult = game.homeTeamName + " " + game.guestTeamName;
 
-              /*TeamInGame HomeTeam = new TeamInGame();
+              TeamInGame HomeTeam = new TeamInGame();
                 HomeTeam.teamName = game.homeTeamName;
                 HomeTeam.teamScore = game.homeTeamScore;
 
@@ -61,7 +61,7 @@ public class ResultObjectManager {
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
 
-                MethodResult.getValues(game);
+                ResultOfTheGame.getValues(game);
 
                 break;
 
@@ -81,13 +81,7 @@ public class ResultObjectManager {
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
 
-                MethodResult.getValues(game);
-
-                if (game.homeTeamScore == game.guestTeamScore){
-                    game.typeGame = "Penalties";
-                    ResultObjectManager.discoverMatchResult(game);
-
-                }
+                ResultOfTheGame.getValues(game);
 
                 break;
 
@@ -99,6 +93,11 @@ public class ResultObjectManager {
                  game.typeGame = "Extra Time";
                  ResultObjectManager.discoverMatchResult(game);
              }
+                if (game.homeTeamScore == game.guestTeamScore){
+                    game.typeGame = "Penalties";
+                    ResultObjectManager.discoverMatchResult(game);
+
+                }
                 break;
 
             case ("Penalties"):
@@ -124,18 +123,20 @@ public class ResultObjectManager {
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
                 /// отрабатываем доп.удары, если кол-во забитых пенальти одинаковое
                 System.out.println("(по пенальти " + game.homeTeamPenScore + "  " + game.guestTeamPenScore+" )");
-                System.out.println("Extra After Match Penalties");
-                while (game.homeTeamPenScore == game.guestTeamPenScore) {
-                    if (MatchProbability.isPenaltyGoal()) {
-                        game.homeTeamPenScore++;
-                    }
-                    if (MatchProbability.isPenaltyGoal()) {
-                        game.guestTeamPenScore++;
-                    }
+                if (game.guestTeamPenScore == game.homeTeamPenScore) {
+                    System.out.println("Extra After Match Penalties");
 
+                    while (game.homeTeamPenScore == game.guestTeamPenScore) {
+                        if (MatchProbability.isPenaltyGoal()) {
+                            game.homeTeamPenScore++;
+                        }
+                        if (MatchProbability.isPenaltyGoal()) {
+                            game.guestTeamPenScore++;
+                        }
+                    }
+                    System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
+                    System.out.println("(по пенальти " + game.homeTeamPenScore + "  " + game.guestTeamPenScore + " )");
                 }
-                System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
-                System.out.println("(по пенальти " + game.homeTeamPenScore + "  " + game.guestTeamPenScore +" )");
                 break;
         }
     }

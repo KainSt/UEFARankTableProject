@@ -1,6 +1,6 @@
 public class StatOfGames {
-    // Команда, Игр, Выигранные, Ничья, Проигравнные, ГЗ, ГП, очки, ЖК, КК.
-
+    // список результатов игр
+       ResultOfTheGame[] listOfGameResult;
 
     }
 
