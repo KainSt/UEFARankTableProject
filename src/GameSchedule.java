@@ -1,5 +1,5 @@
 public class GameSchedule {
-
+///генерируем группу из 4х команд
     public static String[] createGroup() {
         String[] teamList = {"Ливерпуль", "Челси", "Барселона", "Бавария", "Ювентус", "Манчестер Сити",
                 "Пари Сен-Жермен","Зенит", "Реал Мадрид", "Атлетико Мадрид", "Боруссия Дортмунд",
@@ -14,7 +14,7 @@ public class GameSchedule {
     }
 
     public static String[][] makeOrderOfGame( String [] arr){
-
+//согласно правилам УЕФА генерируем расписание пар.
         String [] listOfTeam = arr;
         String [][] orderOfGame = {
                 {listOfTeam[1],listOfTeam[2], listOfTeam[3],listOfTeam[0]},
