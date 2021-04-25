@@ -22,25 +22,25 @@ public class ResultOfTheGame {
 
         switch (placeOfMatch) {
             case ("Home"):
-                if (homeTeamScore>guestTeamScore) {
-                    winMatch   = 1;
-                    drawMatch  = 0;
+                if (homeTeamScore > guestTeamScore) {
+                    winMatch = 1;
+                    drawMatch = 0;
                     looseMatch = 0;
 
                 }
-                if (homeTeamScore == guestTeamScore){
-                    winMatch   = 0;
-                    drawMatch  = 1;
+                if (homeTeamScore == guestTeamScore) {
+                    winMatch = 0;
+                    drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamScore < guestTeamScore){
-                    winMatch   = 0;
-                    drawMatch  = 0;
+                if (homeTeamScore < guestTeamScore) {
+                    winMatch = 0;
+                    drawMatch = 0;
                     looseMatch = 1;
                 }
                 goalScored = homeTeamScore;
                 goalMissed = guestTeamScore;
-                gameScore =  winMatch * 3 + drawMatch * 1 ;
+                gameScore = winMatch * 3 + drawMatch * 1;
                 qtyYellowCard = homeTeamYellowCard;
                 qtyRedCard = homeTeamRedCard;
                 goalScoredPen = homeTeamPenScore;
@@ -48,25 +48,25 @@ public class ResultOfTheGame {
                 break;
 
             case ("Guest"):
-                if (guestTeamScore>homeTeamScore) {
-                    winMatch   = 1;
-                    drawMatch  = 0;
+                if (guestTeamScore > homeTeamScore) {
+                    winMatch = 1;
+                    drawMatch = 0;
                     looseMatch = 0;
 
                 }
-                if (homeTeamScore == guestTeamScore){
-                    winMatch   = 0;
-                    drawMatch  = 1;
+                if (homeTeamScore == guestTeamScore) {
+                    winMatch = 0;
+                    drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamScore > guestTeamScore){
-                    winMatch   = 0;
-                    drawMatch  = 0;
+                if (homeTeamScore > guestTeamScore) {
+                    winMatch = 0;
+                    drawMatch = 0;
                     looseMatch = 1;
                 }
                 goalScored = guestTeamScore;
                 goalMissed = homeTeamScore;
-                gameScore =  winMatch * 3 + drawMatch * 1 ;
+                gameScore = winMatch * 3 + drawMatch * 1;
                 qtyYellowCard = guestTeamYellowCard;
                 qtyRedCard = guestTeamRedCard;
                 goalScoredPen = guestTeamPenScore;
@@ -80,6 +80,7 @@ public class ResultOfTheGame {
         return new ResultOfTheGame(game);
     }
 */
+
     }
 }
 

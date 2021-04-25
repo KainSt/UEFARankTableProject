@@ -15,7 +15,11 @@ public class TrainingStart {
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
                 ResultObjectManager.discoverMatchResult(Game);
-            }
+                ResultOfTheGame Home = new ResultOfTheGame (Game, "Home");
+                System.out.println( Home.gameScore);
+                ResultOfTheGame Guest = new ResultOfTheGame (Game, "Guest");
+                System.out.println( Guest.gameScore);
+                }
 
 
         }
