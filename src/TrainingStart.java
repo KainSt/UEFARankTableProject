@@ -19,6 +19,8 @@ public class TrainingStart {
                 System.out.println( Home.gameScore);
                 ResultOfTheGame Guest = new ResultOfTheGame (Game, "Guest");
                 System.out.println( Guest.gameScore);
+
+
                 }
 
 
