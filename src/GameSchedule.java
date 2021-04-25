@@ -1,5 +1,5 @@
 public class GameSchedule {
-    int qtyDayOfMatch = 6;
+    static int qtyDayOfMatch = 6;
     
     
 ///генерируем группу из 4х команд
@@ -13,20 +13,19 @@ public class GameSchedule {
                              "Мидтьюлланн", "Ренн", "Ференцварош"};
         String[] arr = new String[4];
         for (int i = 0; i < 4; i++)
-            arr[i] = teamList[i * 8 + (int) (Math.random() * 9)];
+            arr[i] = teamList[i * 8 + (int) (Math.random() * 8)];
         return arr;
     }
 
-    public static String[][] makeOrderOfGame( String [] arr){
+    public static String[][] makeOrderOfMatches(String [] arr){
 //согласно правилам УЕФА генерируем расписание пар.
-        String [] listOfTeam = arr;
         String [][] orderOfGame = {
-                {listOfTeam[1],listOfTeam[2], listOfTeam[3],listOfTeam[0]},
-                {listOfTeam[0],listOfTeam[1], listOfTeam[2],listOfTeam[3]},
-                {listOfTeam[2],listOfTeam[0], listOfTeam[1],listOfTeam[3]},
-                {listOfTeam[0],listOfTeam[2], listOfTeam[3],listOfTeam[1]},
-                {listOfTeam[2],listOfTeam[1], listOfTeam[0],listOfTeam[3]},
-                {listOfTeam[1],listOfTeam[0], listOfTeam[3],listOfTeam[2]},
+                {arr[1],arr[2], arr[3],arr[0]},
+                {arr[0],arr[1], arr[2],arr[3]},
+                {arr[2],arr[0], arr[1],arr[3]},
+                {arr[0],arr[2], arr[3],arr[1]},
+                {arr[2],arr[1], arr[0],arr[3]},
+                {arr[1],arr[0], arr[3],arr[2]},
         };
         System.out.println();
         for (int i = 0; i < orderOfGame.length; i++) {

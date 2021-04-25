@@ -1,19 +1,23 @@
 public class TrainingStart {
     public static void main(String args[]) {
 
-        String [] table = GameSchedule.createGroup();
+        String [] table = GameSchedule.createGroup(); //создаем группу
         for (int x =0; x < table.length;x++)   {System.out.println(table[x]);}
-        String [][] league = GameSchedule.makeOrderOfGame(table);
+        String [][] league = GameSchedule.makeOrderOfMatches(table);
+        System.out.println(" ");
 
         //System.out.println("matchResult");
         //System.out.println(ResultManager.discoverMatchResult("Inter","PSV","mainTime"));
         //System.out.println("Generate object OneMatch");
-        for (int i =0; i<6;i++){
-            OneMatch Game1 = new OneMatch(league[i][0], league[i][1],"Regular");
-            ResultObjectManager.discoverMatchResult(Game1);
 
-            OneMatch Game2 = new OneMatch(league[i][2], league[i][3],"Regular");
-            ResultObjectManager.discoverMatchResult(Game2);
+        // для каждой пары из таблицы расписания генерируется результат.
+        for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
+            for (int k=0;k<league[i].length;k+=2) {
+                OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
+                ResultObjectManager.discoverMatchResult(Game);
+            }
+
+
         }
         //OneMatch Game1 = new OneMatch("Roma","Chelsea","Final");
         //OneMatch Game2 = new OneMatch("ЦСКА","УФА","Regular");

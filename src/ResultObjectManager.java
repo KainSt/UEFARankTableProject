@@ -55,13 +55,13 @@ public class ResultObjectManager {
 
                 simGame(game, 45, 90); // второй тайм 45-90 минут
 
-                addT = (int) (Math.random() * 4);
+                addT = (int) (Math.random() * 5);
                 //System.out.println("Add time is  " + addT);
                 simGame(game, 90, 90 + addT); // добавленное время
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
 
-                ResultOfTheGame.getValues(game);
+                //ResultOfTheGame.getValues(game);
 
                 break;
 
@@ -81,7 +81,7 @@ public class ResultObjectManager {
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamScore + " - " + game.guestTeamScore);
 
-                ResultOfTheGame.getValues(game);
+                //ResultOfTheGame.getValues(game);
 
                 break;
 
