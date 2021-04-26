@@ -11,19 +11,20 @@ public class TrainingStart {
         //System.out.println("Generate object OneMatch");
 
         // для каждой пары из таблицы расписания генерируется результат.
+        ResultOfTheGame[][] listOfGameResult = new ResultOfTheGame[GameSchedule.qtyDayOfMatch][(GameSchedule.qtyDayOfMatch/2+1)];
+
         for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
                 ResultObjectManager.discoverMatchResult(Game);
-                ResultOfTheGame Home = new ResultOfTheGame (Game, "Home");
-                System.out.println( Home.gameScore);
-                ResultOfTheGame Guest = new ResultOfTheGame (Game, "Guest");
-                System.out.println( Guest.gameScore);
+                listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home");
+                // listOfGameResult[i][k] = Home;
+                //System.out.print( Home.gameScore + " ");
 
-
+                listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest");
+               // System.out.println( Guest.gameScore);
+                //listOfGameResult[i][k+1] = Guest;
                 }
-
-
         }
         //OneMatch Game1 = new OneMatch("Roma","Chelsea","Final");
         //OneMatch Game2 = new OneMatch("ЦСКА","УФА","Regular");
@@ -33,7 +34,19 @@ public class TrainingStart {
         //ResultObjectManager.discoverMatchResult(Game3);
        /// System.out.println( Game1.homeTeamScore);
         // System.out.println( Game1.guestTeamScore);
+        for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
+            for (int k=0;k<league[i].length;k+=2) {
+                //OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
+               // ResultObjectManager.discoverMatchResult(Game);
+               // ResultOfTheGame Home = new ResultOfTheGame (Game, "Home");
+               // listOfGameResult[i][k] = Home;
+                System.out.print( listOfGameResult[i][k].gameScore + " ");
 
+                //ResultOfTheGame Guest = new ResultOfTheGame (Game, "Guest");
+                System.out.println( listOfGameResult[i][k+1].gameScore);
+                //listOfGameResult[i][k+1] = Guest;
+            }
+        }
     }
 }
 
