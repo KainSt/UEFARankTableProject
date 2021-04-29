@@ -4,7 +4,7 @@ public class OneMatch {
             guestTeamYellowCard, guestTeamRedCard;
 
 
-    public OneMatch(String homeTeamName, String guestTeamName, String typeGame) {
+    OneMatch(String homeTeamName, String guestTeamName, String typeGame) {
         this.homeTeamName = homeTeamName;
         this.guestTeamName = guestTeamName;
         homeTeamScore = 0;

@@ -1,5 +1,6 @@
 public class GameSchedule {
-    static int qtyDayOfMatch = 6;
+    static int qtyOfTeam = 4;
+    static int qtyDayOfMatch = (qtyOfTeam-1)*2;
     
     
 ///генерируем группу из 4х команд
@@ -11,8 +12,8 @@ public class GameSchedule {
                              "Динамо (Киев)", "Зальцбург", "РБ Лейпциг", "Интер", "Олимпиакос", "Лацио", "Краснодар", "Аталанта", 
                              "Локомотив", "Олимпик Марсель", "Брюгге", "Боруссия (Мёнхенгладбах)", "Истанбул Башакшехир", 
                              "Мидтьюлланн", "Ренн", "Ференцварош"};
-        String[] arr = new String[4];
-        for (int i = 0; i < 4; i++)
+        String[] arr = new String[GameSchedule.qtyOfTeam];
+        for (int i = 0; i < qtyOfTeam; i++)
             arr[i] = teamList[i * 8 + (int) (Math.random() * 8)];
         return arr;
     }
