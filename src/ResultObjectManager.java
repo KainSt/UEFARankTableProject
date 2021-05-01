@@ -46,6 +46,16 @@ public class ResultObjectManager {
 
 */
         switch (game.typeGame) {
+            case ("Start"): // костыль для создания пустой таблицы с нулями
+                game.homeTeamScore = 0;
+                game.guestTeamScore = 0;
+                game.homeTeamYellowCard = 0;
+                game.homeTeamRedCard= 0;
+                game.guestTeamYellowCard= 0;
+                game.guestTeamRedCard = 0;
+                game.homeTeamPenScore = 0;
+                game.guestTeamPenScore = 0;
+                break;
             case ("Regular"):
                 simGame(game, 0, 45);// первый тайм 0-45 минут
 

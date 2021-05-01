@@ -21,6 +21,18 @@ public class ResultOfTheGame {
 
 
         switch (placeOfMatch) {
+            case ("Start"):
+                winMatch = 0;
+                drawMatch = 0;
+                looseMatch = 0;
+        goalScored = homeTeamScore;
+        goalMissed = guestTeamScore;
+        gameScore = winMatch * 3 + drawMatch * 1;
+        qtyYellowCard = homeTeamYellowCard;
+        qtyRedCard = homeTeamRedCard;
+        goalScoredPen = homeTeamPenScore;
+        goalMissedPen = guestTeamPenScore;
+        break;
             case ("Home"):
                 if (homeTeamScore > guestTeamScore) {
                     winMatch = 1;
@@ -74,6 +86,7 @@ public class ResultOfTheGame {
 
                 break;
         }
+
 
 
    /* static ResultOfTheGame getValues(OneMatch game) {

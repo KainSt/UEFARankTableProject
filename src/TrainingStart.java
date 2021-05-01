@@ -5,7 +5,7 @@ public class TrainingStart {
         StatOfGames matchArr = new StatOfGames();
         for (int x =0; x < table.length;x++)   {
                     //создаем группу
-            //matchArr.homeStat[x].homeTeamName = table[x];
+          matchArr.homeStat[x].homeTeamName = table[x];
             System.out.println(table[x]);
         }
         String [][] league = GameSchedule.makeOrderOfMatches(table);
@@ -22,12 +22,8 @@ public class TrainingStart {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
                 ResultObjectManager.discoverMatchResult(Game);
                 listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home");
-                // listOfGameResult[i][k] = Home;
-                //System.out.print( Home.gameScore + " ");
-
                 listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest");
-               // System.out.println( Guest.gameScore);
-                //listOfGameResult[i][k+1] = Guest;
+                StatOfGames.addStat(matchArr.homeStat, listOfGameResult[i][k]);
                 }
         }
         //OneMatch Game1 = new OneMatch("Roma","Chelsea","Final");
@@ -50,6 +46,7 @@ public class TrainingStart {
                 System.out.println( listOfGameResult[i][k+1].gameScore);
                 //listOfGameResult[i][k+1] = Guest;
             }
+
         }
     }
 }
