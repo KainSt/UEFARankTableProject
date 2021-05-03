@@ -1,11 +1,11 @@
 public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame, placeOfMatch;
-    int homeTeamScore, guestTeamScore, homeTeamYellowCard, homeTeamRedCard, homeTeamPenScore, guestTeamPenScore,
+    int homeTeamGoalScore, guestTeamGoalScore, homeTeamYellowCard, homeTeamRedCard, homeTeamPenScore, guestTeamPenScore,
             guestTeamYellowCard, guestTeamRedCard;
     int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;
 
     ResultOfTheGame(OneMatch game, String placeOfMatch) {/// конструктор класса
-        /// команда, игр, выигранных, ничья, проигранно, ГЗ, ГП, очки, ЖК, КК, ГЗпенальти
+        /// команда, игр, выигранных, ничья, проигранно, ГЗ, ГП, очки, ЖК, КК, ГЗпенальти, ГПпенальти
         this.placeOfMatch = placeOfMatch;
         homeTeamName = game.homeTeamName;
         guestTeamName = game.guestTeamName;
@@ -13,8 +13,8 @@ public class ResultOfTheGame {
         guestTeamPenScore = game.guestTeamPenScore;
         guestTeamYellowCard = game.guestTeamYellowCard;
         guestTeamRedCard = game.guestTeamRedCard;
-        homeTeamScore = game.homeTeamScore;
-        guestTeamScore = game.guestTeamScore;
+        homeTeamGoalScore = game.homeTeamGoalScore;
+        guestTeamGoalScore = game.guestTeamGoalScore;
         homeTeamYellowCard = game.homeTeamYellowCard;
         homeTeamRedCard = game.homeTeamRedCard;
         typeGame = game.typeGame;
@@ -25,8 +25,8 @@ public class ResultOfTheGame {
                 winMatch = 0;
                 drawMatch = 0;
                 looseMatch = 0;
-        goalScored = homeTeamScore;
-        goalMissed = guestTeamScore;
+        goalScored = homeTeamGoalScore;
+        goalMissed = guestTeamGoalScore;
         gameScore = winMatch * 3 + drawMatch * 1;
         qtyYellowCard = homeTeamYellowCard;
         qtyRedCard = homeTeamRedCard;
@@ -34,24 +34,24 @@ public class ResultOfTheGame {
         goalMissedPen = guestTeamPenScore;
         break;
             case ("Home"):
-                if (homeTeamScore > guestTeamScore) {
+                if (homeTeamGoalScore > guestTeamGoalScore) {
                     winMatch = 1;
                     drawMatch = 0;
                     looseMatch = 0;
 
                 }
-                if (homeTeamScore == guestTeamScore) {
+                if (homeTeamGoalScore == guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamScore < guestTeamScore) {
+                if (homeTeamGoalScore < guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 0;
                     looseMatch = 1;
                 }
-                goalScored = homeTeamScore;
-                goalMissed = guestTeamScore;
+                goalScored = homeTeamGoalScore;
+                goalMissed = guestTeamGoalScore;
                 gameScore = winMatch * 3 + drawMatch * 1;
                 qtyYellowCard = homeTeamYellowCard;
                 qtyRedCard = homeTeamRedCard;
@@ -60,24 +60,24 @@ public class ResultOfTheGame {
                 break;
 
             case ("Guest"):
-                if (guestTeamScore > homeTeamScore) {
+                if (guestTeamGoalScore > homeTeamGoalScore) {
                     winMatch = 1;
                     drawMatch = 0;
                     looseMatch = 0;
 
                 }
-                if (homeTeamScore == guestTeamScore) {
+                if (homeTeamGoalScore == guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamScore > guestTeamScore) {
+                if (homeTeamGoalScore > guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 0;
                     looseMatch = 1;
                 }
-                goalScored = guestTeamScore;
-                goalMissed = homeTeamScore;
+                goalScored = guestTeamGoalScore;
+                goalMissed = homeTeamGoalScore;
                 gameScore = winMatch * 3 + drawMatch * 1;
                 qtyYellowCard = guestTeamYellowCard;
                 qtyRedCard = guestTeamRedCard;
@@ -88,11 +88,6 @@ public class ResultOfTheGame {
         }
 
 
-
-   /* static ResultOfTheGame getValues(OneMatch game) {
-        return new ResultOfTheGame(game);
-    }
-*/
 
     }
 }

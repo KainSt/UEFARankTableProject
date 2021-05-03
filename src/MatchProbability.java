@@ -10,10 +10,7 @@ public class MatchProbability {
         System.out.println("NO GOAL!");
         return false;
     }
-   // public static int chanceToPenaltiesWin(int scoreHomeTeam , int chanceToGoalHomeTeam)
-   // {
-   //     return scoreHomeTeam + chanceToGoalHomeTeam;
-   // }
+
 
     public static boolean isYellowCard()  {
         ///Среднее значение желтых карточек в футбольном матче составляет 3,5 на обе команды
