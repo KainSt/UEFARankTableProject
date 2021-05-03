@@ -34,17 +34,7 @@ public class ResultObjectManager {
 
 
     public static void discoverMatchResult(OneMatch game) {
-        /*String matchResult = game.homeTeamName + " " + game.guestTeamName;
 
-              TeamInGame HomeTeam = new TeamInGame();
-                HomeTeam.teamName = game.homeTeamName;
-                HomeTeam.teamScore = game.homeTeamScore;
-
-                TeamInGame GuestTeam = new TeamInGame();
-                GuestTeam.teamName = game.guestTeamName;
-                GuestTeam.teamScore = game.guestTeamScore;
-
-*/
         switch (game.typeGame) {
             case ("Start"): // костыль для создания пустой таблицы с нулями
                 game.homeTeamGoalScore = 0;
@@ -90,9 +80,6 @@ public class ResultObjectManager {
                 simGame(game, 120, 120 + addT); // добавленное время
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamGoalScore + " - " + game.guestTeamGoalScore);
-
-
-
                 break;
 
             case ("Final"):

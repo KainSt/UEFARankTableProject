@@ -1,5 +1,6 @@
 public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame, placeOfMatch;
+    //// удалить все нафиг, только мешает код понимать.
     int homeTeamGoalScore, guestTeamGoalScore, homeTeamYellowCard, homeTeamRedCard, homeTeamPenScore, guestTeamPenScore,
             guestTeamYellowCard, guestTeamRedCard;
     int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;
@@ -27,7 +28,7 @@ public class ResultOfTheGame {
                 looseMatch = 0;
         goalScored = homeTeamGoalScore;
         goalMissed = guestTeamGoalScore;
-        gameScore = winMatch * 3 + drawMatch * 1;
+        gameScore = 0;
         qtyYellowCard = homeTeamYellowCard;
         qtyRedCard = homeTeamRedCard;
         goalScoredPen = homeTeamPenScore;
@@ -38,7 +39,6 @@ public class ResultOfTheGame {
                     winMatch = 1;
                     drawMatch = 0;
                     looseMatch = 0;
-
                 }
                 if (homeTeamGoalScore == guestTeamGoalScore) {
                     winMatch = 0;
@@ -52,7 +52,7 @@ public class ResultOfTheGame {
                 }
                 goalScored = homeTeamGoalScore;
                 goalMissed = guestTeamGoalScore;
-                gameScore = winMatch * 3 + drawMatch * 1;
+                gameScore = winMatch * 3 + drawMatch;
                 qtyYellowCard = homeTeamYellowCard;
                 qtyRedCard = homeTeamRedCard;
                 goalScoredPen = homeTeamPenScore;
@@ -78,12 +78,11 @@ public class ResultOfTheGame {
                 }
                 goalScored = guestTeamGoalScore;
                 goalMissed = homeTeamGoalScore;
-                gameScore = winMatch * 3 + drawMatch * 1;
+                gameScore = winMatch * 3 + drawMatch;
                 qtyYellowCard = guestTeamYellowCard;
                 qtyRedCard = guestTeamRedCard;
                 goalScoredPen = guestTeamPenScore;
                 goalMissedPen = homeTeamPenScore;
-
                 break;
         }
 
