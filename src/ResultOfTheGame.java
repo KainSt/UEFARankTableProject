@@ -1,8 +1,5 @@
 public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame, placeOfMatch;
-    //// удалить все нафиг, только мешает код понимать.
-    int homeTeamGoalScore, guestTeamGoalScore, homeTeamYellowCard, homeTeamRedCard, homeTeamPenScore, guestTeamPenScore,
-            guestTeamYellowCard, guestTeamRedCard;
     int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;
 
     ResultOfTheGame(OneMatch game, String placeOfMatch) {/// конструктор класса
@@ -10,14 +7,6 @@ public class ResultOfTheGame {
         this.placeOfMatch = placeOfMatch;
         homeTeamName = game.homeTeamName;
         guestTeamName = game.guestTeamName;
-        homeTeamPenScore = game.homeTeamPenScore;
-        guestTeamPenScore = game.guestTeamPenScore;
-        guestTeamYellowCard = game.guestTeamYellowCard;
-        guestTeamRedCard = game.guestTeamRedCard;
-        homeTeamGoalScore = game.homeTeamGoalScore;
-        guestTeamGoalScore = game.guestTeamGoalScore;
-        homeTeamYellowCard = game.homeTeamYellowCard;
-        homeTeamRedCard = game.homeTeamRedCard;
         typeGame = game.typeGame;
 
 
@@ -26,63 +15,63 @@ public class ResultOfTheGame {
                 winMatch = 0;
                 drawMatch = 0;
                 looseMatch = 0;
-        goalScored = homeTeamGoalScore;
-        goalMissed = guestTeamGoalScore;
+        goalScored = game.homeTeamGoalScore;
+        goalMissed = game.guestTeamGoalScore;
         gameScore = 0;
-        qtyYellowCard = homeTeamYellowCard;
-        qtyRedCard = homeTeamRedCard;
-        goalScoredPen = homeTeamPenScore;
-        goalMissedPen = guestTeamPenScore;
+        qtyYellowCard = game.homeTeamYellowCard;
+        qtyRedCard = game.homeTeamRedCard;
+        goalScoredPen = game.homeTeamPenScore;
+        goalMissedPen = game.guestTeamPenScore;
         break;
             case ("Home"):
-                if (homeTeamGoalScore > guestTeamGoalScore) {
+                if (game.homeTeamGoalScore > game.guestTeamGoalScore) {
                     winMatch = 1;
                     drawMatch = 0;
                     looseMatch = 0;
                 }
-                if (homeTeamGoalScore == guestTeamGoalScore) {
+                if (game.homeTeamGoalScore == game.guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamGoalScore < guestTeamGoalScore) {
+                if (game.homeTeamGoalScore < game.guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 0;
                     looseMatch = 1;
                 }
-                goalScored = homeTeamGoalScore;
-                goalMissed = guestTeamGoalScore;
+                goalScored = game.homeTeamGoalScore;
+                goalMissed = game.guestTeamGoalScore;
                 gameScore = winMatch * 3 + drawMatch;
-                qtyYellowCard = homeTeamYellowCard;
-                qtyRedCard = homeTeamRedCard;
-                goalScoredPen = homeTeamPenScore;
-                goalMissedPen = guestTeamPenScore;
+                qtyYellowCard = game.homeTeamYellowCard;
+                qtyRedCard = game.homeTeamRedCard;
+                goalScoredPen = game.homeTeamPenScore;
+                goalMissedPen = game.guestTeamPenScore;
                 break;
 
             case ("Guest"):
-                if (guestTeamGoalScore > homeTeamGoalScore) {
+                if (game.guestTeamGoalScore > game.homeTeamGoalScore) {
                     winMatch = 1;
                     drawMatch = 0;
                     looseMatch = 0;
 
                 }
-                if (homeTeamGoalScore == guestTeamGoalScore) {
+                if (game.homeTeamGoalScore == game.guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 1;
                     looseMatch = 0;
                 }
-                if (homeTeamGoalScore > guestTeamGoalScore) {
+                if (game.homeTeamGoalScore > game.guestTeamGoalScore) {
                     winMatch = 0;
                     drawMatch = 0;
                     looseMatch = 1;
                 }
-                goalScored = guestTeamGoalScore;
-                goalMissed = homeTeamGoalScore;
+                goalScored = game.guestTeamGoalScore;
+                goalMissed = game.homeTeamGoalScore;
                 gameScore = winMatch * 3 + drawMatch;
-                qtyYellowCard = guestTeamYellowCard;
-                qtyRedCard = guestTeamRedCard;
-                goalScoredPen = guestTeamPenScore;
-                goalMissedPen = homeTeamPenScore;
+                qtyYellowCard = game.guestTeamYellowCard;
+                qtyRedCard = game.guestTeamRedCard;
+                goalScoredPen = game.guestTeamPenScore;
+                goalMissedPen = game.homeTeamPenScore;
                 break;
         }
 
