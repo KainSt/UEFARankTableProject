@@ -1,7 +1,10 @@
+import java.util.Arrays;
+
 public class TrainingStart {
     public static void main(String args[]) {
 
         String [] table = GameSchedule.createGroup();
+
         StatOfGames matchArr = new StatOfGames();
         for (int x =0; x < table.length;x++)   {
                     //создаем группу
@@ -32,6 +35,8 @@ public class TrainingStart {
         }
         StatOfGames.showStat(matchArr.homeStat);
         StatOfGames.showStat(matchArr.guestStat);
+        StatOfGames.showStat(matchArr.totalStat);
+        Arrays.sort(matchArr.totalStat);
         StatOfGames.showStat(matchArr.totalStat);
 
     }
