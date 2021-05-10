@@ -1,6 +1,4 @@
-import org.jetbrains.annotations.NotNull;
-
-public class ResultOfTheGame implements Comparable<ResultOfTheGame>{
+public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame, placeOfMatch;
     int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;
 
@@ -81,15 +79,7 @@ public class ResultOfTheGame implements Comparable<ResultOfTheGame>{
 
     }
 
-    @Override
-    public int compareTo(@NotNull ResultOfTheGame o) {
-        if(gameScore == o.gameScore)
-            return 0;
-        else if(gameScore > o.gameScore)
-            return -1;
-        else
-            return 1;
-    }
+
 }
 
 

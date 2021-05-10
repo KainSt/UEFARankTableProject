@@ -23,7 +23,7 @@ public class TrainingStart {
                 for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
-                ResultObjectManager.discoverMatchResult(Game);
+                ResultObjectManager.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
                 listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home");
                 listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest");
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k]);
@@ -33,10 +33,10 @@ public class TrainingStart {
                 }
 
         }
-        StatOfGames.showStat(matchArr.homeStat);
-        StatOfGames.showStat(matchArr.guestStat);
+        //StatOfGames.showStat(matchArr.homeStat);
+        //StatOfGames.showStat(matchArr.guestStat);
         StatOfGames.showStat(matchArr.totalStat);
-        Arrays.sort(matchArr.totalStat);
+        Arrays.sort(matchArr.totalStat, new ScoreComparator());
         StatOfGames.showStat(matchArr.totalStat);
 
     }
