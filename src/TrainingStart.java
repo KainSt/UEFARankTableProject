@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TrainingStart {
     public static void main(String args[]) {
 
@@ -36,7 +34,7 @@ public class TrainingStart {
         //StatOfGames.showStat(matchArr.homeStat);
         //StatOfGames.showStat(matchArr.guestStat);
         StatOfGames.showStat(matchArr.totalStat);
-        Arrays.sort(matchArr.totalStat, new ScoreComparator());
+        TeamInQuestion.teamInQuestSort(matchArr.totalStat);
         StatOfGames.showStat(matchArr.totalStat);
 
     }
