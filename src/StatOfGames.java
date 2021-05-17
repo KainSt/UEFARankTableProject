@@ -76,7 +76,7 @@ public class StatOfGames {
     }
 
     static void showStat (ResultOfTheGame[] arr){
-          for (int i = 0; i<GameSchedule.qtyOfTeam; i++){
+          for (int i = 0; i<arr.length; i++){
               System.out.println(" W/D/L: " +arr[i].winMatch+"-"  +arr[i].drawMatch+"-" + arr[i].looseMatch + ", ГЗ-ГП: " + arr[i].goalScored
                       + "-" + arr[i].goalMissed +  ", Score: " + arr[i].gameScore +"  " + arr[i].homeTeamName);
           }
