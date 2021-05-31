@@ -2,7 +2,7 @@ public class StatOfGames {
     //таблица итогов игр, заполняется по итогам каждого тура
       ResultOfTheGame[] homeStat, guestStat, totalStat;
 
-      StatOfGames(){
+      StatOfGames(){/// это нужно для того, чтобы массивы не были пустыми, без данной процедуры null не позволяет присваивать новые значения
 
       OneMatch Game = new OneMatch( "Home", "Guest", "Start");
 

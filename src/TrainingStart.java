@@ -18,7 +18,7 @@ public class TrainingStart {
 
         // для каждой пары из таблицы расписания генерируется результат.
         ResultOfTheGame[][] listOfGameResult = new ResultOfTheGame[GameSchedule.qtyDayOfMatch][(GameSchedule.qtyDayOfMatch/2+1)];
-                for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
+        for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
                 ResultObjectManager.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
