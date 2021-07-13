@@ -8,7 +8,7 @@ public class StatOfGames {
 
       homeStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];
       for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          homeStat[i] = new ResultOfTheGame (Game, "Start");
+          homeStat[i] = new ResultOfTheGame (Game, "Start");// заполняем нулями.
       }
 
       guestStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];

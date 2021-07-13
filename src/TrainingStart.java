@@ -30,7 +30,6 @@ public class TrainingStart {
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
 
-
                 }
 
         }
