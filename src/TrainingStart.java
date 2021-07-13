@@ -13,19 +13,22 @@ public class TrainingStart {
 
         }
         String [][] league = GameSchedule.makeOrderOfMatches(table);
+        // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
         System.out.println();
 
 
         // для каждой пары из таблицы расписания генерируется результат.
         ResultOfTheGame[][] listOfGameResult = new ResultOfTheGame[GameSchedule.qtyDayOfMatch][(GameSchedule.qtyDayOfMatch/2+1)];
+        //создаётся таблица по кол-ву игровых дней строчек, по кол-ву играющих пар в столбцах - расчет через кол-во туров кол-воДнейМатчей
         for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
+                //создается объект, который находится сверху всех процедур и обрабатывается без передачи, просто потому что он есть.
                 ResultObjectManager.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
-                listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home");
-                listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest");
-                StatOfGames.addStat(matchArr, listOfGameResult[i][k]);
-                StatOfGames.addStat(matchArr, listOfGameResult[i][k+1]);
+                listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
+                listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
+                StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                StatOfGames.addStat(matchArr, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
 
 
                 }
