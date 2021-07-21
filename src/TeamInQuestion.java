@@ -5,7 +5,27 @@ import java.util.Arrays;
 public class TeamInQuestion {
      public static void teamInQuestSort(ResultOfTheGame[] arr) {
         teamInQuestSortScore(arr);
- //нужно написать модуль, который будет вытаскивать имена повторяющихся команд с одинковым кол-вом очков, чтобы далее
+        //нужно написать модуль, который будет вытаскивать имена повторяющихся команд с одинковым кол-вом очков, чтобы далее
+         String[] equalScoreTeam = new String[GameSchedule.qtyOfTeam];
+         for(int i=0; i < equalScoreTeam.length;i++){
+             equalScoreTeam[i] = "NULL";
+         }
+
+         for(int i=0; i<arr.length-1;i++){
+            if (arr[i].gameScore == arr[i+1].gameScore) {
+                int k=0;
+                do{ equalScoreTeam[k] = arr[i].homeTeamName;
+                    k++;
+                    equalScoreTeam[k] = arr[i + 1].homeTeamName;
+
+                } while (arr[k].gameScore == arr[k+1].gameScore);
+
+                   }
+                      }
+         for(int i=0; i < equalScoreTeam.length;i++){
+             if (equalScoreTeam[i]=="NULL") break;
+             System.out.println(equalScoreTeam[i]);
+         }
          // из листофГеймРезалт собрать только по ним массив, размер которого будет ограничен кол-вом повторюше
          // этот массив заполнить через StatOfGames.addStat(matchArr, listOfGameResult[i][k]);
          // отсортировать полученный массив по всем правилам (если больше 3х команд повторителей, то еще раз повторить выборку для создания массива

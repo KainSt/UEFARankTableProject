@@ -35,7 +35,7 @@ public class TrainingStart {
         }
         //StatOfGames.showStat(matchArr.homeStat);
         //StatOfGames.showStat(matchArr.guestStat);
-        StatOfGames.showStat(matchArr.totalStat);
+        //StatOfGames.showStat(matchArr.totalStat);
         TeamInQuestion.teamInQuestSort(matchArr.totalStat);
         StatOfGames.showStat(matchArr.totalStat);
 
