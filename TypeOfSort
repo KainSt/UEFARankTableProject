@@ -1,0 +1,77 @@
+import java.util.Comparator;
+import java.util.Arrays;
+
+public class HelloWorld{
+    
+    public static class ScoreComparator implements Comparator<Table> {
+    @Override
+    public int compare(Table o1, Table o2) {
+       if (o2.score - o1.score == 0) {
+           System.out.println("equality of point!! " + o1.teamName + " - " + o2.teamName);
+           System.out.println();
+
+           return ((o2.goal - o1.goal));///нужно вызывать функцию, которая будет возвращать результат
+           // -1/0/+1 внутренними расчетами, в зависимости от итогов игры
+       }
+        return o2.score - o1.score;
+       }
+}
+    
+    
+    public static class Table{
+        int score, goal;
+        String teamName;
+        
+    
+       
+   Table (String name, int score, int goal){
+          this.score = score;
+          this.goal = goal;
+       teamName = name;
+        }
+     
+   }
+
+     public static void main(String []args){
+         
+        Table [] list = new Table[4];
+        list[0]=new Table("Milan A", 0, 0);
+        list[1]=new Table("Milan B", 2, 3);
+        list[2]=new Table("Milan C", 2, 4);
+        list[3]=new Table("Milan D", 5, 5);
+        
+        System.out.println(list[0].teamName + " " + list[0].score + " " + list[0].goal);
+        System.out.println(list[1].teamName + " " + list[1].score + " " + list[1].goal);
+        System.out.println(list[2].teamName + " " + list[2].score + " " + list[2].goal);
+        System.out.println(list[3].teamName + " " + list[3].score + " " + list[3].goal);
+        System.out.println();
+        
+        Arrays.sort(list, new ScoreComparator());
+        
+        System.out.println(list[0].teamName + " " + list[0].score + " " + list[0].goal);
+        System.out.println(list[1].teamName + " " + list[1].score + " " + list[1].goal);
+        System.out.println(list[2].teamName + " " + list[2].score + " " + list[2].goal);
+        System.out.println(list[3].teamName + " " + list[3].score + " " + list[3].goal);
+        System.out.println();
+        
+        int [] countTable = new int[4];
+        
+       
+        for (int i = 0; i < 4; i++){
+            for (int k = 0; k<4;k++){
+            if (list[i].score == list[k].score ) {
+                countTable[i]++;
+            }
+            }
+        }
+        
+        for (int i = 0; i<4;i++){
+          System.out.println(countTable[i]);  
+        }
+        
+        
+        
+     }
+     
+     
+}
