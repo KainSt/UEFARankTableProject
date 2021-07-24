@@ -19,23 +19,18 @@ public class TeamInQuestion {
          for (int i = 0; i<countTable.length;i++){
              System.out.println(countTable[i]);
          }
-        /* String[] equalScoreTeam = new String[GameSchedule.qtyOfTeam];
-         for(int i=0; i < equalScoreTeam.length;i++){
-             equalScoreTeam[i] = "NULL";
-         }
-         int k=0;
-         for(int i=0; i<arr.length-1;i++){
-            if (arr[i].gameScore == arr[i+1].gameScore) {
-             equalScoreTeam[k] = arr[i].homeTeamName;
-                    k++;
-                    equalScoreTeam[k] = arr[i + 1].homeTeamName;
 
-                   }
-                      }
-         for(int i=0; i < equalScoreTeam.length;i++){
-             if (equalScoreTeam[i]=="NULL") break;
-             System.out.println(equalScoreTeam[i]);
-         }*/
+        for (int i = 0; i< countTable.length; i++){
+            if (countTable[i] > 1){
+                StatOfGames localTable = new StatOfGames();
+                ResultOfTheGame[] shortTable = new ResultOfTheGame[countTable[i]];
+                for (int k = 0; k < shortTable.length;k++){
+                    shortTable [k] =
+                }
+            }
+        }
+
+
          // из листофГеймРезалт собрать только по ним массив, размер которого будет ограничен кол-вом повторюше
          // этот массив заполнить через StatOfGames.addStat(matchArr, listOfGameResult[i][k]);
          // отсортировать полученный массив по всем правилам (если больше 3х команд повторителей, то еще раз повторить выборку для создания массива
