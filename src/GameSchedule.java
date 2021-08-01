@@ -1,7 +1,11 @@
 public class GameSchedule {
-    static int qtyOfTeam = 4;
-    static int qtyDayOfMatch = (qtyOfTeam-1)*2;
-    
+    static int qtyOfTeam;
+    static int qtyDayOfMatch;
+
+    GameSchedule(int qtyOfTeam){
+        this.qtyOfTeam = qtyOfTeam;
+        qtyDayOfMatch = (qtyOfTeam-1)*2;
+    }
     
 ///генерируем группу из 4х команд
     public static String[] createGroup() {

@@ -16,16 +16,29 @@ public class TeamInQuestion {
              }
          }
 
-         for (int i = 0; i<countTable.length;i++){
+       for (int i = 0; i<countTable.length;i++){
              System.out.println(countTable[i]);
          }
 
-        for (int i = 0; i< countTable.length; i++){
+       for (int i = 0; i< countTable.length; i++){
             if (countTable[i] > 1){
-                StatOfGames localTable = new StatOfGames();
-                ResultOfTheGame[] shortTable = new ResultOfTheGame[countTable[i]];
-                for (int k = 0; k < shortTable.length;k++){
-                    shortTable [k] =
+                int f = i;
+                new GameSchedule(countTable[i]);
+                String [] localTable = new String[countTable[i]];
+                for (int l=0; l<countTable[i];l++) {
+                    localTable[l] = arr[i].homeTeamName;
+                    i++;
+                }
+                StatOfGames matchArrSort = new StatOfGames();
+                for (int x =0; x < localTable.length;x++)   {
+                    //создаем группу
+                    matchArrSort.homeStat[x].homeTeamName = localTable[x];
+                    matchArrSort.guestStat[x].homeTeamName = localTable[x];
+                    matchArrSort.totalStat[x].homeTeamName = localTable[x];
+                    System.out.println(localTable[x]);
+
+                }
+                i = f+countTable[f];
                 }
             }
         }
@@ -36,8 +49,7 @@ public class TeamInQuestion {
          // отсортировать полученный массив по всем правилам (если больше 3х команд повторителей, то еще раз повторить выборку для создания массива
          // вывести на экран итог по командам
          // произвести замену блоков в массиве, НЕ меняя значения!!!!
-
-              }
+//}
 
 
 

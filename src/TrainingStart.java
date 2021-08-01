@@ -1,6 +1,7 @@
 public class TrainingStart {
     public static void main(String args[]) {
 
+        new GameSchedule(4);
         String [] table = GameSchedule.createGroup();
 
         StatOfGames matchArr = new StatOfGames();
