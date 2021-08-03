@@ -22,13 +22,12 @@ public class TeamInQuestion {
 
        for (int i = 0; i< countTable.length; i++){
             if (countTable[i] > 1){
-                int f = i;
+                int delta = i;
                 new GameSchedule(countTable[i]);
                 String [] localTable = new String[countTable[i]];
-                for (int l=0; l<countTable[i];l++) {
-                    localTable[l] = arr[i].homeTeamName;
-                    i++;
-                }
+               for (int l=0; l<countTable[delta];l++) {
+                    localTable[l] = arr[l+delta].homeTeamName;
+                    }
                 StatOfGames matchArrSort = new StatOfGames();
                 for (int x =0; x < localTable.length;x++)   {
                     //создаем группу
@@ -36,9 +35,8 @@ public class TeamInQuestion {
                     matchArrSort.guestStat[x].homeTeamName = localTable[x];
                     matchArrSort.totalStat[x].homeTeamName = localTable[x];
                     System.out.println(localTable[x]);
-
                 }
-                i = f+countTable[f];
+                i=i+countTable[delta];
                 }
             }
         }
