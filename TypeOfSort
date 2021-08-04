@@ -34,16 +34,21 @@ public class HelloWorld{
 
      public static void main(String []args){
          
-        Table [] list = new Table[4];
-        list[0]=new Table("Milan A", 0, 0);
-        list[1]=new Table("Milan B", 2, 3);
+        Table [] list = new Table[6];
+        list[0]=new Table("Milan A", 1, 2);
+        list[1]=new Table("Milan B", 1, 1);
         list[2]=new Table("Milan C", 2, 4);
-        list[3]=new Table("Milan D", 5, 5);
+        list[3]=new Table("Milan D", 3, 6);
+        list[4]=new Table("Milan E", 1, 7);
+        list[5]=new Table("Milan F", 3, 9);
+        
         
         System.out.println(list[0].teamName + " " + list[0].score + " " + list[0].goal);
         System.out.println(list[1].teamName + " " + list[1].score + " " + list[1].goal);
         System.out.println(list[2].teamName + " " + list[2].score + " " + list[2].goal);
         System.out.println(list[3].teamName + " " + list[3].score + " " + list[3].goal);
+        System.out.println(list[4].teamName + " " + list[4].score + " " + list[4].goal);
+        System.out.println(list[5].teamName + " " + list[5].score + " " + list[5].goal);
         System.out.println();
         
         Arrays.sort(list, new ScoreComparator());
@@ -52,26 +57,50 @@ public class HelloWorld{
         System.out.println(list[1].teamName + " " + list[1].score + " " + list[1].goal);
         System.out.println(list[2].teamName + " " + list[2].score + " " + list[2].goal);
         System.out.println(list[3].teamName + " " + list[3].score + " " + list[3].goal);
+        System.out.println(list[4].teamName + " " + list[4].score + " " + list[4].goal);
+        System.out.println(list[5].teamName + " " + list[5].score + " " + list[5].goal);
         System.out.println();
         
-        int [] countTable = new int[4];
+        int [] countTable = new int[6];
         
        
-        for (int i = 0; i < 4; i++){
-            for (int k = 0; k<4;k++){
+        for (int i = 0; i < 6; i++){
+            for (int k = 0; k<6;k++){
             if (list[i].score == list[k].score ) {
                 countTable[i]++;
             }
             }
         }
         
-        for (int i = 0; i<4;i++){
+        for (int i = 0; i<6;i++){
           System.out.println(countTable[i]);  
         }
+        System.out.println();
         
+        for (int i = 0; i< countTable.length; i++) {
+            if (countTable[i] > 1){
+                int delta = i;
+                String [] localTable = new String[countTable[i]];
+               for (int l=0; l<countTable[delta];l++) {
+                    localTable[l] = list[l+delta].teamName;
+                    }
+                
+                for (int x =0; x < localTable.length;x++)   {
+                    System.out.println(localTable[x]);
+                }
+               
+                if (i+countTable[delta]>countTable.length){
+                    break;
+                } else{
+                    i = i+countTable[delta]-1;
+                };
+               
+                }
+   
+        }
+
         
-        
-     }
+     } 
+   
      
-     
-}
+}  
