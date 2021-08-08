@@ -20,12 +20,12 @@ public class TeamInQuestion {
              System.out.println(countTable[i]);
          }
 
-       for (int i = 0; i< countTable.length; i++){
-            if (countTable[i] > 1){
-                int delta = i;
+         for (int i = 0; i< countTable.length; i++) {
+             if (countTable[i] > 1){
+                 int delta = i;
                 new GameSchedule(countTable[i]);
                 String [] localTable = new String[countTable[i]];
-               for (int l=0; l<countTable[delta];l++) {
+                 for (int l=0; l<countTable[delta];l++) {
                     localTable[l] = arr[l+delta].homeTeamName;
                     }
                 StatOfGames matchArrSort = new StatOfGames();
@@ -36,8 +36,22 @@ public class TeamInQuestion {
                     matchArrSort.totalStat[x].homeTeamName = localTable[x];
                     System.out.println(localTable[x]);
                 }
-                i=i+countTable[delta];
+
+
+                 if (i+countTable[delta]>countTable.length){
+                     for (int k=0;k<TrainingStart.league[i].length;k+=2) {
+                         StatOfGames.addStat(matchArrSort, TrainingStart.listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                         StatOfGames.addStat(matchArrSort, TrainingStart.listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                     }
+                     StatOfGames.showStat(matchArrSort.totalStat);
+
+                     break;
+                 } else{
+                     i = i+countTable[delta]-1;
+                 }
                 }
+
+
             }
         }
 

@@ -1,4 +1,6 @@
 public class TrainingStart {
+    static String [][] league;
+    static ResultOfTheGame[][] listOfGameResult;
     public static void main(String args[]) {
 
         new GameSchedule(4);
@@ -13,7 +15,7 @@ public class TrainingStart {
           System.out.println(table[x]);
 
         }
-        String [][] league = GameSchedule.makeOrderOfMatches(table);
+        TrainingStart.league = GameSchedule.makeOrderOfMatches(table);
         // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
         System.out.println();
 
