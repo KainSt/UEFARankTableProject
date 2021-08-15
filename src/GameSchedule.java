@@ -1,4 +1,4 @@
-public class GameSchedule {
+class GameSchedule {
     static int qtyOfTeam;
     static int qtyDayOfMatch;
 

@@ -36,14 +36,14 @@ public class TeamInQuestion {
                     matchArrSort.totalStat[x].homeTeamName = localTable[x];
                     System.out.println(localTable[x]);
                 }
-                 TrainingStart trainingStartRec = new TrainingStart();
+                 // TrainingStart trainingStartRec = new TrainingStart();
 
                  if (i+countTable[delta]>localTable.length){
-                     for (int k=0;k<trainingStartRec.league[i].length;k+=2) {
-                         StatOfGames.addStat(matchArrSort, trainingStartRec.listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
-                         StatOfGames.addStat(matchArrSort, trainingStartRec.listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
-                     }
-                     StatOfGames.showStat(matchArrSort.totalStat);
+                    // for (int k=0;k<TrainingStart.league[i].length;k+=2) {
+                     //    StatOfGames.addStat(matchArrSort, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                    //     StatOfGames.addStat(matchArrSort, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                   //  }
+                   StatOfGames.showStat(matchArrSort.totalStat);
 
                      break;
                  } else{
