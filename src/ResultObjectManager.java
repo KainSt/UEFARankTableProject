@@ -34,7 +34,7 @@ public class ResultObjectManager {
 
 
     public static void discoverMatchResult(OneMatch game) {
-
+// вносит изменения в поля объекта типа OneMatch - т.е. записывает итоги матча со всеми игровыми событиями.
         switch (game.typeGame) {
             case ("Start"): // костыль для создания пустой таблицы с нулями
                 game.homeTeamGoalScore = 0;
