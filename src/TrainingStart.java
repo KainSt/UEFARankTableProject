@@ -1,6 +1,7 @@
 public class TrainingStart {
-    static String [][] league;
-    static ResultOfTheGame[][] listOfGameResult;
+    String [][] league;
+    ResultOfTheGame[][] listOfGameResult;
+
     public static void main(String args[]) {
 
         new GameSchedule(4);
@@ -15,7 +16,8 @@ public class TrainingStart {
           System.out.println(table[x]);
 
         }
-        TrainingStart.league = GameSchedule.makeOrderOfMatches(table);
+        TrainingStart trainingStartFix = new TrainingStart();
+        trainingStartFix.league = GameSchedule.makeOrderOfMatches(table);
         // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
         System.out.println();
 
@@ -24,14 +26,14 @@ public class TrainingStart {
         ResultOfTheGame[][] listOfGameResult = new ResultOfTheGame[GameSchedule.qtyDayOfMatch][(GameSchedule.qtyDayOfMatch/2+1)];
         //создаётся таблица по кол-ву игровых дней строчек, по кол-ву играющих пар в столбцах - расчет через кол-во туров кол-воДнейМатчей
         for (int i =0; i<GameSchedule.qtyDayOfMatch;i++){
-            for (int k=0;k<league[i].length;k+=2) {
-                OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
+            for (int k=0;k<trainingStartFix.league[i].length;k+=2) {
+                OneMatch Game = new OneMatch(trainingStartFix.league[i][k], trainingStartFix.league[i][k + 1], "Regular");
                 //создается объект, который находится сверху всех процедур и обрабатывается без передачи, просто потому что он есть.
                 ResultObjectManager.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
-                listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
-                listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
-                StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
-                StatOfGames.addStat(matchArr, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                trainingStartFix.listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
+                trainingStartFix.listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
+                StatOfGames.addStat(matchArr, trainingStartFix.listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                StatOfGames.addStat(matchArr, trainingStartFix.listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
 
                 }
 

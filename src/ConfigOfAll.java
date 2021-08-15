@@ -4,5 +4,6 @@ public class ConfigOfAll {
 
     ConfigOfAll(int qtyOfTeam) {
         this.qtyOfTeam = qtyOfTeam;
+
     }
 }

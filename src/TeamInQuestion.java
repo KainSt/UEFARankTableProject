@@ -24,7 +24,7 @@ public class TeamInQuestion {
              if (countTable[i] > 1){
                  int delta = i;
                 new GameSchedule(countTable[i]);
-                String [] localTable = new String[countTable[i]];
+                String [] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
                  for (int l=0; l<countTable[delta];l++) {
                     localTable[l] = arr[l+delta].homeTeamName;
                     }
@@ -36,12 +36,12 @@ public class TeamInQuestion {
                     matchArrSort.totalStat[x].homeTeamName = localTable[x];
                     System.out.println(localTable[x]);
                 }
+                 TrainingStart trainingStartRec = new TrainingStart();
 
-
-                 if (i+countTable[delta]>countTable.length){
-                     for (int k=0;k<TrainingStart.league[i].length;k+=2) {
-                         StatOfGames.addStat(matchArrSort, TrainingStart.listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
-                         StatOfGames.addStat(matchArrSort, TrainingStart.listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                 if (i+countTable[delta]>localTable.length){
+                     for (int k=0;k<trainingStartRec.league[i].length;k+=2) {
+                         StatOfGames.addStat(matchArrSort, trainingStartRec.listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
+                         StatOfGames.addStat(matchArrSort, trainingStartRec.listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
                      }
                      StatOfGames.showStat(matchArrSort.totalStat);
 
