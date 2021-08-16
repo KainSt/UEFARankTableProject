@@ -7,11 +7,10 @@ class GameSchedule {
     GameSchedule(int qtyOfTeam){
         this.qtyOfTeam = qtyOfTeam;
         qtyDayOfMatch = (qtyOfTeam-1)*2;
-        table = GameSchedule.createGroup(this.qtyOfTeam);
-    }
+            }
     
 ///генерируем группу из 4х команд
-    public static String[] createGroup(int qtyOfTeam) {
+    public String[] createGroup(int qtyOfTeam) {
         /// список из 4*8 = 32 команд, которые участвуют в соревновании
         String[] teamList = {"Бавария", "Севилья", "Реал Мадрид", "Ливерпуль", "Ювентус", "Пари Сен-Жермен", "Зенит", "Порту", 
                              "Барселона", "Атлетико Мадрид", "Манчестер Сити", "Манчестер Юнайтед", "Шахтёр", "Боруссия (Дортмунд)", 
@@ -25,7 +24,7 @@ class GameSchedule {
         return arr;
     }
 
-    public static String[][] makeOrderOfMatches(String [] arr){
+    public String[][] makeOrderOfMatches(String [] arr){
 //согласно правилам УЕФА генерируем расписание пар.
         String [][] orderOfGame = {
                 {arr[1],arr[2], arr[3],arr[0]},

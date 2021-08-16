@@ -1,11 +1,11 @@
+import java.util.Arrays;
+
 public class TrainingStart {
 
     public static void main(String args[]) {
 
-        // new GameSchedule(4);
-        //String [] table = GameSchedule.createGroup();
+        ConfigOfAll Season1 = new ConfigOfAll(4);
 
-          ConfigOfAll Season1 = new ConfigOfAll(4);
         //StatOfGames.showStat(matchArr.homeStat);
         //StatOfGames.showStat(matchArr.guestStat);
         //StatOfGames.showStat(matchArr.totalStat);

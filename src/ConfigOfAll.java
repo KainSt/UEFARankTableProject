@@ -3,14 +3,15 @@ class ConfigOfAll {
     int qtyOfGroup; // кол-во групп с командами по qtyOfTeam в каждой.
     GameSchedule MajorSchedule;
     StatOfGames matchArr;
-    String [][] league;
-    ResultOfTheGame[][] listOfGameResult;
+    String [][] league; // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
+    ResultOfTheGame[][] listOfGameResult; // для каждой пары из таблицы расписания генерируется результат.
 
 
     ConfigOfAll(int qtyOfTeam) {
         this.qtyOfTeam = qtyOfTeam;
         qtyOfGroup = 1;
         MajorSchedule = new GameSchedule(qtyOfTeam);
+        MajorSchedule.table = MajorSchedule.createGroup(this.qtyOfTeam);
         matchArr = new StatOfGames();
         for (int x =0; x < MajorSchedule.table.length;x++)   {
             //создаем группу
@@ -19,7 +20,7 @@ class ConfigOfAll {
             matchArr.totalStat[x].homeTeamName = MajorSchedule.table[x];
             System.out.println(MajorSchedule.table[x]);
         }
-        league = GameSchedule.makeOrderOfMatches(MajorSchedule.table);
+        league = MajorSchedule.makeOrderOfMatches(MajorSchedule.table);
         // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
         System.out.println();
 
