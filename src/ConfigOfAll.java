@@ -30,7 +30,7 @@ class ConfigOfAll {
             for (int k=0;k<league[i].length;k+=2) {
                 OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
                 //создается объект, который находится сверху всех процедур и обрабатывается без передачи, просто потому что он есть.
-                ResultObjectManager.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
+                Game.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
                 listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
                 listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
