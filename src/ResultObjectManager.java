@@ -1,6 +1,6 @@
 public class ResultObjectManager {
 
-    public static void simGame(OneMatch game, int startT, int finishT) {
+  /*  public static void simGame(OneMatch game, int startT, int finishT) {
         for (int x = startT; x < finishT; x++) {
             //System.out.println(x);
             for (int dexX = 0; dexX < 50; dexX = dexX + 10) {
@@ -136,7 +136,7 @@ public class ResultObjectManager {
                 }
                 break;
         }
-    }
+    }*/
 }
 
 
