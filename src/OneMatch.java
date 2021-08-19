@@ -20,7 +20,7 @@ public class OneMatch {
         
     }
     
-    void simGame(OneMatch game, int startT, int finishT) {
+    private void simGame(OneMatch game, int startT, int finishT) {
         for (int x = startT; x < finishT; x++) {
             //System.out.println(x);
             for (int dexX = 0; dexX < 50; dexX = dexX + 10) {
