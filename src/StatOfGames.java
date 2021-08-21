@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 public class StatOfGames {
     //таблица итогов игр, заполняется по итогам каждого тура
       ResultOfTheGame[] homeStat, guestStat, totalStat;

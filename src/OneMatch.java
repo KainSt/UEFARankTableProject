@@ -16,11 +16,9 @@ public class OneMatch {
         guestTeamRedCard = 0;
         homeTeamPenScore = 0;
         guestTeamPenScore = 0;
-        
-        
     }
-    
-    void simGame(OneMatch game, int startT, int finishT) {
+
+    private void simGame(OneMatch game, int startT, int finishT) {
         for (int x = startT; x < finishT; x++) {
             //System.out.println(x);
             for (int dexX = 0; dexX < 50; dexX = dexX + 10) {
@@ -56,16 +54,7 @@ public class OneMatch {
     public void discoverMatchResult(OneMatch game) {
 // вносит изменения в поля объекта типа OneMatch - т.е. записывает итоги матча со всеми игровыми событиями.
         switch (game.typeGame) {
-            case ("Start"): // костыль для создания пустой таблицы с нулями
-                game.homeTeamGoalScore = 0;
-                game.guestTeamGoalScore = 0;
-                game.homeTeamYellowCard = 0;
-                game.homeTeamRedCard= 0;
-                game.guestTeamYellowCard= 0;
-                game.guestTeamRedCard = 0;
-                game.homeTeamPenScore = 0;
-                game.guestTeamPenScore = 0;
-                break;
+
             case ("Regular"):
                 simGame(game, 0, 45);// первый тайм 0-45 минут
 
