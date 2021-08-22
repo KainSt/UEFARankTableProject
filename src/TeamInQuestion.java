@@ -36,9 +36,10 @@ public class TeamInQuestion {
                     matchArrSort.totalStat[x].homeTeamName = localTable[x];
                     System.out.println(localTable[x]);
                 }
-                 // TrainingStart trainingStartRec = new TrainingStart();
 
-                 if (i+countTable[delta]>localTable.length){
+
+                 if (i+countTable[delta]>localTable.length){ /// не работает, пересчитать для того случая, когда две команды находятся на первой позиции
+                     // с одинаковым кол-вом очков
                     // for (int k=0;k<TrainingStart.league[i].length;k+=2) {
                      //    StatOfGames.addStat(matchArrSort, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
                     //     StatOfGames.addStat(matchArrSort, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
