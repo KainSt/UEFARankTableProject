@@ -1,21 +1,19 @@
-import org.jetbrains.annotations.NotNull;
-
 public class StatOfGames {
     //таблица итогов игр, заполняется по итогам каждого тура
-      ResultOfTheGame[] homeStat, guestStat, totalStat;
+      MatchProtocol[] homeStat, guestStat, totalStat;
 
       StatOfGames(){/// это нужно для того, чтобы массивы не были пустыми, без данной процедуры null не позволяет присваивать новые значения
 
-      OneMatch Game = new OneMatch( "Home", "Guest", "Start");
+      MatchProtocol Game = new MatchProtocol( "Home", "Guest", "Start");
 
-      homeStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];
+      homeStat = new MatchProtocol[];
       for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          homeStat[i] = new ResultOfTheGame (Game, "Start");// заполняем нулями.
+          homeStat[i] = new MatchProtocol (Game, "Start");// заполняем нулями.
       }
 
-      guestStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];
+      guestStat = new MatchProtocol[GameSchedule.qtyOfTeam];
       for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          guestStat[i] = new ResultOfTheGame (Game, "Start");
+          guestStat[i] = new MatchProtocol (Game, "Start");
       }
 
       totalStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];

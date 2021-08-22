@@ -4,7 +4,7 @@ class ConfigOfAll {
     GameSchedule MajorSchedule;
     StatOfGames matchArr;
     String [][] league; // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
-    ResultOfTheGame[][] listOfGameResult; // для каждой пары из таблицы расписания генерируется результат.
+    MatchProtocol [][] listOfGameResult; // для каждой пары из таблицы расписания генерируется результат.
 
 
     ConfigOfAll(int qtyOfTeam) {
@@ -25,15 +25,15 @@ class ConfigOfAll {
         System.out.println();
 
         // для каждой пары из таблицы расписания генерируется результат.
-        listOfGameResult = new ResultOfTheGame[MajorSchedule.qtyDayOfMatch][(MajorSchedule.qtyDayOfMatch/2+1)];
+        listOfGameResult = new MatchProtocol[MajorSchedule.qtyDayOfMatch][MajorSchedule.qtyDayOfMatch/2];
         //создаётся таблица по кол-ву игровых дней строчек, по кол-ву играющих пар в столбцах - расчет через кол-во туров кол-воДнейМатчей
         for (int i =0; i<MajorSchedule.qtyDayOfMatch;i++){
             for (int k=0;k<league[i].length;k+=2) {
-                OneMatch Game = new OneMatch(league[i][k], league[i][k + 1], "Regular");
+                MatchProtocol Game = new MatchProtocol(league[i][k], league[i][k + 1], "Regular");
                 //создается объект, который находится сверху всех процедур и обрабатывается без передачи, просто потому что он есть.
                 Game.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
-               MatchProtocol j1= new MatchProtocol(Game.homeTeamName, Game.guestTeamName,"Regular");
-               System.out.println(j1.homeTeamGoalScore);
+              // MatchProtocol j1= new MatchProtocol(Game.homeTeamName, Game.guestTeamName,"Regular");
+             // System.out.println(Game.homeTeamGoalScore);
                 listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
                 listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами

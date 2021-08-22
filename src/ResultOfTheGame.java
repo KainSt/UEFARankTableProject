@@ -2,7 +2,7 @@ public class ResultOfTheGame {
     String homeTeamName, guestTeamName, typeGame, placeOfMatch;
     int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;
 
-    ResultOfTheGame(OneMatch game, String placeOfMatch) {/// конструктор класса
+    ResultOfTheGame(MatchProtocol game, String placeOfMatch) {/// конструктор класса
         /// команда, игр, выигранных, ничья, проигранно, ГЗ, ГП, очки, ЖК, КК, ГЗпенальти, ГПпенальти
         this.placeOfMatch = placeOfMatch;
         homeTeamName = game.homeTeamName;
