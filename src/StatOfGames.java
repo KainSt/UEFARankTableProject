@@ -1,32 +1,31 @@
 public class StatOfGames {
     //таблица итогов игр, заполняется по итогам каждого тура
+    int qtyOfTeam;
       MatchProtocol[] homeStat, guestStat, totalStat;
 
-      StatOfGames(){/// это нужно для того, чтобы массивы не были пустыми, без данной процедуры null не позволяет присваивать новые значения
-
+      StatOfGames(int qtyOfTeam){/// это нужно для того, чтобы массивы не были пустыми, без данной процедуры null не позволяет присваивать новые значения
+          this.qtyOfTeam = qtyOfTeam;
       MatchProtocol Game = new MatchProtocol( "Home", "Guest", "Start");
 
-      homeStat = new MatchProtocol[];
-      for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          homeStat[i] = new MatchProtocol (Game, "Start");// заполняем нулями.
+      homeStat = new MatchProtocol[this.qtyOfTeam];
+      for (int i=0; i<this.qtyOfTeam; i++){
+          homeStat[i] = new MatchProtocol (Game.homeTeamName, Game.guestTeamName, "Start");// заполняем нулями.
       }
 
-      guestStat = new MatchProtocol[GameSchedule.qtyOfTeam];
-      for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          guestStat[i] = new MatchProtocol (Game, "Start");
+      guestStat = new MatchProtocol[this.qtyOfTeam];
+      for (int i=0; i<this.qtyOfTeam; i++){
+          guestStat[i] = new MatchProtocol (Game.homeTeamName, Game.guestTeamName, "Start");
       }
 
-      totalStat = new ResultOfTheGame[GameSchedule.qtyOfTeam];
-      for (int i=0; i<GameSchedule.qtyOfTeam; i++){
-          totalStat[i] = new ResultOfTheGame (Game, "Start");
+      totalStat = new MatchProtocol[this.qtyOfTeam];
+      for (int i=0; i<this.qtyOfTeam; i++){
+          totalStat[i] = new MatchProtocol(Game.homeTeamName, Game.guestTeamName, "Start");
       }
       }
 
 
-    static void addStat (StatOfGames arr, ResultOfTheGame stat) {
-        switch (stat.placeOfMatch) {
-            case ("Home"):
-                for (int l = 0; l < GameSchedule.qtyOfTeam; l++) {
+    static void addStat (StatOfGames arr, MatchProtocol Game) {
+                 for (int l = 0; l < arr.qtyOfTeam; l++) {
                     if (arr.homeStat[l].homeTeamName == stat.homeTeamName) {
                         arr.homeStat[l].gameScore += stat.gameScore;
                         arr.homeStat[l].goalScored += stat.goalScored;
@@ -40,9 +39,8 @@ public class StatOfGames {
                         arr.homeStat[l].goalMissedPen+= stat.goalMissedPen;
                     }
                 }
-                break;
-            case ("Guest"):
-                for (int l = 0; l < GameSchedule.qtyOfTeam; l++) {
+
+                for (int l = 0; l < arr.qtyOfTeam; l++) {
                     if (arr.guestStat[l].homeTeamName == stat.guestTeamName) {
                         arr.guestStat[l].gameScore += stat.gameScore;
                         arr.guestStat[l].goalScored += stat.goalScored;
@@ -56,11 +54,10 @@ public class StatOfGames {
                         arr.guestStat[l].goalMissedPen+= stat.goalMissedPen;
                     }
                 }
-                break;
 
 
-        }
-        for (int l = 0; l < GameSchedule.qtyOfTeam; l++) {
+
+          for (int l = 0; l < arr.qtyOfTeam; l++) {
             arr.totalStat[l].gameScore = arr.homeStat[l].gameScore + arr.guestStat[l].gameScore;
             arr.totalStat[l].goalScored = arr.homeStat[l].goalScored + arr.guestStat[l].goalScored;
             arr.totalStat[l].goalMissed = arr.homeStat[l].goalMissed + arr.guestStat[l].goalMissed;

@@ -12,7 +12,7 @@ class ConfigOfAll {
         qtyOfGroup = 1;
         MajorSchedule = new GameSchedule(qtyOfTeam);
         MajorSchedule.table = MajorSchedule.createGroup(this.qtyOfTeam);
-        matchArr = new StatOfGames();
+        matchArr = new StatOfGames(this.qtyOfTeam);
         for (int x =0; x < MajorSchedule.table.length;x++)   {
             //создаем группу
             matchArr.homeStat[x].homeTeamName = MajorSchedule.table[x];
@@ -34,8 +34,8 @@ class ConfigOfAll {
                 Game.discoverMatchResult(Game);/// заполняет поля объекта Game на основе симуляции игры
               // MatchProtocol j1= new MatchProtocol(Game.homeTeamName, Game.guestTeamName,"Regular");
              // System.out.println(Game.homeTeamGoalScore);
-                listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
-                listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
+               // listOfGameResult[i][k] = new ResultOfTheGame (Game, "Home"); /// вытаскивает то, что для домашней команды свойственно
+               // listOfGameResult[i][k+1] = new ResultOfTheGame (Game, "Guest"); /// вытаскивает то, что для гостевой команды свойствоено
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k]);  // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
                 StatOfGames.addStat(matchArr, listOfGameResult[i][k+1]); // идет запись в архив результатов, по месту дом/гости заполняется подархив с результатами
 
