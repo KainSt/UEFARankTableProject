@@ -5,6 +5,8 @@ public class MatchProtocol{
     int homeWinMatch,  homeDrawMatch,  homeLooseMatch,  homeGameScore,
         guestWinMatch, guestDrawMatch, guestLooseMatch, guestGameScore;
 
+
+
     MatchProtocol(String homeTeamName, String guestTeamName, String typeGame) {
         this.homeTeamName = homeTeamName;
         this.guestTeamName = guestTeamName;
@@ -76,10 +78,9 @@ public class MatchProtocol{
     }
 
 
-    public void discoverMatchResult(MatchProtocol game) {
+    void discoverMatchResult(MatchProtocol game) {
 // вносит изменения в поля объекта типа OneMatch - т.е. записывает итоги матча со всеми игровыми событиями.
         switch (game.typeGame) {
-
             case ("Regular"):
                 simGame(game, 0, 45);// первый тайм 0-45 минут
 

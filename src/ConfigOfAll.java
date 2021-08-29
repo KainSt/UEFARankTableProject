@@ -1,10 +1,11 @@
 class ConfigOfAll {
+/*
     int qtyOfTeam; // кол-во команд в данном розыгрыше
     int qtyOfGroup; // кол-во групп с командами по qtyOfTeam в каждой.
     GameSchedule MajorSchedule;
     StatOfGames matchArr;
     String [][] league; // массив Лига - это одна за другой пары играющих команд, первая - домашняя, вторая - выездная.
-    MatchProtocol [][] listOfGameResult; // для каждой пары из таблицы расписания генерируется результат.
+    MatchProtocol[][] listOfGameResult; // для каждой пары из таблицы расписания генерируется результат.
 
 
     ConfigOfAll(int qtyOfTeam) {
@@ -42,5 +43,5 @@ class ConfigOfAll {
             }
 
         }
-    }
+    }*/
 }

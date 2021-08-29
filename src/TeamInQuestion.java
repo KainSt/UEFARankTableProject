@@ -3,6 +3,7 @@ import java.util.Arrays;
 //этот класс должен обладать функционалом, чтобы построить таблицы по игре 2-3-n команд, названия которых известны.
 // это требуестя для того, чтобы иметь возможность сравнивать команды с равными показателями.
 public class TeamInQuestion {
+    /*
      public static void teamInQuestSort(ResultOfTheGame[] arr) {
         teamInQuestSortScore(arr);
         //нужно написать модуль, который будет вытаскивать имена повторяющихся команд с одинковым кол-вом очков, чтобы далее
@@ -77,6 +78,6 @@ public class TeamInQuestion {
         }
 
 
-
+*/
 }
 

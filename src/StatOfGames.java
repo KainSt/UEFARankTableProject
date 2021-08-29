@@ -1,5 +1,5 @@
 public class StatOfGames {
-    //таблица итогов игр, заполняется по итогам каждого тура
+   /* //таблица итогов игр, заполняется по итогам каждого тура
     int qtyOfTeam;
       MatchProtocol[] homeStat, guestStat, totalStat;
 
@@ -79,7 +79,7 @@ public class StatOfGames {
           }
         System.out.println();
     }
-
+*/
 }
 
 
