@@ -32,8 +32,7 @@ public class Season {
 
 
     MatchProtocol discoverMatchResult(String homeTeamName, String guestTeamName){
-        MatchProtocol FastMatch = new MatchProtocol( homeTeamName, guestTeamName, "Start");
-        return  FastMatch;
+                return  new MatchProtocol( homeTeamName, guestTeamName, "Start");
     }
 
     void sortRankTable() // правило сортировки
