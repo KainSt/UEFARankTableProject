@@ -4,12 +4,8 @@ public class TrainingStart {
 
         Season j1 = new Season();
         System.out.println(" ");
-
-        //StatOfGames.showStat(matchArr.homeStat);
-        //StatOfGames.showStat(matchArr.guestStat);
-        //StatOfGames.showStat(matchArr.totalStat);
-        //TeamInQuestion.teamInQuestSort(Season1.matchArr.totalStat);
-        //StatOfGames.showStat(Season1.matchArr.totalStat);
+        j1.refreshRankTable(j1.SeasonSchedule);
+        System.out.println(" ");
 
     }
 }
