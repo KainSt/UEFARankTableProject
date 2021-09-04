@@ -10,18 +10,22 @@ public class Season {
 
     String[] createGroup (int qtyOfTeam){
         /// список из 4*8 = 32 команд, которые участвуют в соревновании
-        String[] teamList = {"Челси Англия","Вильярреал Испания", "Атлетико Мадрид Испания","Манчестер Сити Англия",
-                "Бавария Германия","Интер Италия", "Лилль Франция","Спортинг Португалия","Реал Мадрид Испания",
-                "Барселона Испания","Ювентус Италия","Манчестер Юнайтед Англия","Пари Сен-Жермен Франция",
-                "Ливерпуль Англия","Севилья Испания","Боруссия (Дортмунд) Германия","Порту Португалия",
-                "Аякс Нидерланды","Шахтер Донецк Украина","РБ Лейпциг Германия","Зальцбург Австрия",
-                "Бенфика Португалия","Аталанта Италия","Зенит Россия","Бешикташ Турция","Динамо (Киев) Украина",
-                "Брюгге Бельгия","Янг Бойз Швейцария","Милан Италия","Мальмё Швеция","Вольфсбург Германия",
-                "Шериф Молдавия"};
+        String[] teamList = {"Челси","Вильярреал", "Атлетико Мадрид","Манчестер Сити",
+                "Бавария","Интер", "Лилль","Спортинг","Реал Мадрид",
+                "Барселона","Ювентус","Манчестер Юнайтед","Пари Сен-Жермен",
+                "Ливерпуль","Севилья","Боруссия (Дортмунд)","Порту",
+                "Аякс","Шахтер Донецк","РБ Лейпциг","Зальцбург",
+                "Бенфика","Аталанта","Зенит","Бешикташ","Динамо (Киев)",
+                "Брюгге","Янг Бойз","Милан","Мальмё","Вольфсбург",
+                "Шериф"};
         String[] arr = new String[qtyOfTeam];
         for (int i = 0; i < qtyOfTeam; i++)
             arr[i] = teamList[i * 8 + (int) (Math.random() * 8)];
         return arr;
+    }
+
+    String typeOfGameInTour (){
+        return "Regular";
     }
 
 
@@ -31,22 +35,22 @@ public class Season {
     }
 
 
-    void sortRankTable() // правило сортировки
-    {
+    void sortRankTable() {// правило сортировки
+
 
     }
 
-    void showRankTable() // отображение турнирной таблицы
-    {
+    void showRankTable(){ // отображение турнирной таблицы
+
 
     }
 
-    void refreshRankTable(MatchProtocol[][] arr){ // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
-        for (int i = 0; i<arr[i].length;i++){
-            SeasonSchedule [i][0] = new MatchProtocol(arr[i][0].homeTeamName, arr[i][0].homeTeamName,"Regular");
-            SeasonSchedule [i][1] = new MatchProtocol(arr[i][1].homeTeamName, arr[i][1].homeTeamName,"Regular");
+    void refreshRankTable(Season seasonName, int tour){ // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
+        for (int j = 0; j <seasonName.SeasonSchedule[tour].length; j++) {
+            seasonName.SeasonSchedule[tour][j].discoverMatchResult(seasonName.SeasonSchedule[tour][j]);
             }
-        }
+
+    }
 
 
 
@@ -55,9 +59,10 @@ public class Season {
         qtyOfGroup = 1; // кол-во групп с командами по qtyOfTeam в каждой.
         teamList = createGroup (qtyOfTeam);
         SeasonSchedule = new MatchProtocol[(qtyOfTeam-1)*2][qtyOfTeam/2];
-        for (int i = 0; i<(qtyOfTeam-1)*2;i++){
-            for (int k=0;k<=qtyOfTeam/2;k+=2){
-            SeasonSchedule [i][k/2] = discoverMatchResult(teamList[orderOfGame[i][k]], teamList[orderOfGame[i][k+1]]);
+        for (int i = 0; i < SeasonSchedule.length; i++) {
+            for (int j = 0; j <=SeasonSchedule[i].length; j+=2) {
+            SeasonSchedule [i][j/2] = discoverMatchResult(teamList[orderOfGame[i][j]], teamList[orderOfGame[i][j+1]]);
+            SeasonSchedule [i][j/2].typeGame =typeOfGameInTour();//устанавливаем для команды тип игры для будущей симуляции
             }
         }
 

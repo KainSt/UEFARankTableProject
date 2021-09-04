@@ -24,26 +24,29 @@ public class MatchProtocol{
         homeWinMatch   = 0; guestWinMatch   = 0;
         homeDrawMatch  = 0; guestDrawMatch  = 0;
         homeLooseMatch = 0; guestLooseMatch = 0;
-    /*    if (homeTeamGoalScore > guestTeamGoalScore) {
-            homeWinMatch   = 1; guestWinMatch   = 0;
-            homeDrawMatch  = 0; guestDrawMatch  = 0;
-            homeLooseMatch = 0; guestLooseMatch = 1;
+    }
+
+    private void checkScore(MatchProtocol game){
+        if (game.homeTeamGoalScore > game.guestTeamGoalScore) {
+            game.homeWinMatch   = 1; game.guestWinMatch   = 0;
+            game.homeDrawMatch  = 0; game.guestDrawMatch  = 0;
+            game.homeLooseMatch = 0; game.guestLooseMatch = 1;
 
         }
-        if (homeTeamGoalScore == guestTeamGoalScore) {
-            homeWinMatch   = 0; guestWinMatch   = 0;
-            homeDrawMatch  = 1; guestDrawMatch  = 1;
-            homeLooseMatch = 0; guestLooseMatch = 0;
+        if (game.homeTeamGoalScore == game.guestTeamGoalScore) {
+            game.homeWinMatch   = 0; game.guestWinMatch   = 0;
+            game.homeDrawMatch  = 1; game.guestDrawMatch  = 1;
+            game.homeLooseMatch = 0; game.guestLooseMatch = 0;
         }
-        if (homeTeamGoalScore < guestTeamGoalScore) {
-            homeWinMatch   = 0; guestWinMatch   = 1;
-            homeDrawMatch  = 0; guestDrawMatch  = 0;
-            homeLooseMatch = 1; guestLooseMatch = 0;
+        if (game.homeTeamGoalScore < game.guestTeamGoalScore) {
+            game.homeWinMatch   = 0; game.guestWinMatch   = 1;
+            game.homeDrawMatch  = 0; game.guestDrawMatch  = 0;
+            game.homeLooseMatch = 1; game.guestLooseMatch = 0;
         }
-        homeGameScore = homeWinMatch * 3 + homeDrawMatch;
-        guestGameScore = guestWinMatch * 3 + guestDrawMatch;
-             */
-}
+        game.homeGameScore = game.homeWinMatch * 3 + game.homeDrawMatch;
+        game.guestGameScore = game.guestWinMatch * 3 + game.guestDrawMatch;
+
+    }
 
     private void simGame(MatchProtocol game, int startT, int finishT) {
         for (int x = startT; x < finishT; x++) {
@@ -75,6 +78,7 @@ public class MatchProtocol{
                 }
             }
         }
+
     }
 
 
@@ -93,11 +97,9 @@ public class MatchProtocol{
                 addT = (int) (Math.random() * 5);
                 //System.out.println("Add time is  " + addT);
                 simGame(game, 90, 90 + addT); // добавленное время
+                checkScore(game);
 
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamGoalScore + " - " + game.guestTeamGoalScore);
-
-
-
                 break;
 
             case ("Extra Time"):
@@ -113,7 +115,7 @@ public class MatchProtocol{
                 addT = (int) (Math.random() * 4);
                 //System.out.println("Add time is  " + addT);
                 simGame(game, 120, 120 + addT); // добавленное время
-
+                checkScore(game);
                 System.out.println(game.homeTeamName + " - " + game.guestTeamName + "  " + game.homeTeamGoalScore + " - " + game.guestTeamGoalScore);
                 break;
 

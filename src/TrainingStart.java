@@ -4,7 +4,9 @@ public class TrainingStart {
 
         Season j1 = new Season();
         System.out.println(" ");
-        j1.refreshRankTable(j1.SeasonSchedule);
+        for (int tour=0; tour<j1.SeasonSchedule.length;tour++) {
+            j1.refreshRankTable(j1, tour);
+        }
         System.out.println(" ");
 
     }
