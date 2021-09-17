@@ -26,7 +26,7 @@ public class Season {
 
     String typeOfGameInTour (){
         return "Regular";
-    }
+    }// установка типа игры в зависимости от даты или расписания.
 
 
 
@@ -41,7 +41,7 @@ public class Season {
     void showRankTable(){ // отображение турнирной таблицы
     }
 
-    int[] slotMatchProtocol(Season nowSeason,String nameHome, String nameGuest){
+    private int[] dateMatchProtocol(Season nowSeason,String nameHome, String nameGuest){
         int[] arr = new int[]{0, 0};
         for (int i=0; i<nowSeason.seasonSchedule.length;i++){
             for (int k=0; k<nowSeason.seasonSchedule[i].length;k++){
@@ -55,10 +55,10 @@ public class Season {
 
     }
 
-    void refreshRankTable(Season seasonName, int tour){ // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
-        for (int j = 0; j <seasonName.seasonSchedule[tour].length; j++) {
-            seasonName.seasonSchedule[tour][j].discoverMatchResult(seasonName.seasonSchedule[tour][j]);
-            }
+    void refreshSeasonSchedule(Season seasonName, MatchProtocol matchProtocol){ // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
+        int[] tour = dateMatchProtocol(seasonName, matchProtocol.homeTeamName,matchProtocol.guestTeamName);
+        seasonName.seasonSchedule[tour[0]][tour[1]].discoverMatchResult(seasonName.seasonSchedule[tour[0]][tour[1]]);
+
 
 
     }
