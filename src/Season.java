@@ -41,6 +41,20 @@ public class Season {
     void showRankTable(){ // отображение турнирной таблицы
     }
 
+    int[] slotMatchProtocol(Season nowSeason,String nameHome, String nameGuest){
+        int[] arr = new int[]{0, 0};
+        for (int i=0; i<nowSeason.seasonSchedule.length;i++){
+            for (int k=0; k<nowSeason.seasonSchedule[i].length;k++){
+                if((nowSeason.seasonSchedule[i][k].homeTeamName==nameHome)&&
+                        (nowSeason.seasonSchedule[i][k].guestTeamName==nameGuest)){
+                    arr = new int[]{i, k};
+                }
+            }
+        }
+        return arr;
+
+    }
+
     void refreshRankTable(Season seasonName, int tour){ // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
         for (int j = 0; j <seasonName.seasonSchedule[tour].length; j++) {
             seasonName.seasonSchedule[tour][j].discoverMatchResult(seasonName.seasonSchedule[tour][j]);
@@ -63,6 +77,8 @@ public class Season {
             }
         }
         seasonRank = new SeasonRank(teamList);
+
+
 
     }
 
