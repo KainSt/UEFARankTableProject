@@ -10,7 +10,11 @@ public class TrainingStart {
             }
         }
         System.out.println(" ");
-        j1.seasonRank.showStat(j1.seasonRank.homeStat);
+        j1.showRankTable(j1.seasonRank.homeStat);
+        j1.showRankTable(j1.seasonRank.guestStat);
+        j1.showRankTable(j1.seasonRank.totalStat);
+        j1.sortRankTable(j1.seasonRank.totalStat);
+        j1.showRankTable(j1.seasonRank.totalStat);
         System.out.println(" ");
 
     }
