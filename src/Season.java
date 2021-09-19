@@ -37,33 +37,37 @@ public class Season {
     }
 
 
-    void sortRankTable(TeamResult[] arr) {// правило сортировки
-        Arrays.sort(arr, new ScoreComparator());
-        int[] countTable = new int[arr.length];
-
-        for (int i = 0; i < countTable.length; i++) {
+    void sortRankTable(SeasonRank seasonRank) {// сортировка с поиском строк с одинаковым кол-вом очков
+      Arrays.sort(seasonRank.totalStat, new ScoreComparator());
+      int[] countTable = new int[seasonRank.totalStat.length];
+      for (int i = 0; i < countTable.length; i++) {
             for (int k = 0; k < countTable.length; k++) {
-                if (arr[i].gameScore == arr[k].gameScore) {
-                    countTable[i]++;
+                if (seasonRank.totalStat[i].gameScore == seasonRank.totalStat[k].gameScore) {
+                countTable[i]++;
                 }
             }
         }
 
         for (int i = 0; i < countTable.length; i++) {
-            System.out.println(countTable[i]);
+        System.out.println(countTable[i]);
         }
 
-        for (int i = 0; i < countTable.length; i++) {
+       for (int i = 0; i < countTable.length; i++) {
             if (countTable[i] > 1) {
-                int delta = i;
+                int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
 
                 String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
                 for (int l = 0; l < countTable[delta]; l++) {
-                    localTable[l] = arr[l + delta].teamName;
+                    localTable[l] = seasonRank.totalStat[l + delta].teamName;
                 }
                 SeasonRank matchArrSort = new SeasonRank(localTable);
                 showRankTable(matchArrSort.totalStat);
 
+                if (i+countTable[delta]>countTable.length){
+                    break;
+                } else{
+                    i = i+countTable[delta]-1;
+                }
             }
 
         }
@@ -166,9 +170,6 @@ public class Season {
             }
         }
         seasonRank = new SeasonRank(teamList);
-
-
-
     }
 }
 
