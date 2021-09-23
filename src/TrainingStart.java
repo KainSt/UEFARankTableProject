@@ -13,7 +13,7 @@ public class TrainingStart {
     j1.showRankTable(j1.seasonRank.homeStat);
     j1.showRankTable(j1.seasonRank.guestStat);
     j1.showRankTable(j1.seasonRank.totalStat);
-    j1.sortRankTable(j1.seasonRank);
+    j1.sortRankTable(j1);
     j1.showRankTable(j1.seasonRank.totalStat);
     System.out.println(" ");
 

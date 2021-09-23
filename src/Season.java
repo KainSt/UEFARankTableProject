@@ -36,9 +36,30 @@ public class Season {
     return  new MatchProtocol( homeTeamName, guestTeamName, "Start");
     }
 
+    private SeasonRank refreshSeasonRank (MatchProtocol[][] seasonSchedule, String[] teamList){
+        SeasonRank arr =new SeasonRank(teamList);
+        for (int tour = 0; tour < seasonSchedule.length; tour++) {
+            for (int k = 0; k < seasonSchedule[tour].length; k++) {
+                if (existA(seasonSchedule[tour][k].homeTeamName, teamList)&(existA(seasonSchedule[tour][k].guestTeamName, teamList))){
+                    refreshSeasonRank(arr,seasonSchedule[tour][k]);
+                }
+            }
+        }
+    return arr;
+    }
 
-    void sortRankTable(SeasonRank seasonRank) {// сортировка с поиском строк с одинаковым кол-вом очков
-      Arrays.sort(seasonRank.totalStat, new ScoreComparator());
+    private boolean existA(String a, String[] massStringA) {
+        for (String s : massStringA) {
+            if (a.equals(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    void sortRankTable(Season seasonName) {// сортировка с поиском строк с одинаковым кол-вом очков
+      Arrays.sort(seasonName.seasonRank.totalStat, new ScoreComparator());
       int[] countTable = new int[seasonRank.totalStat.length];
       for (int i = 0; i < countTable.length; i++) {
             for (int k = 0; k < countTable.length; k++) {
@@ -49,7 +70,7 @@ public class Season {
         }
 
         for (int i = 0; i < countTable.length; i++) {
-        System.out.println(countTable[i]);
+               System.out.println(countTable[i]);
         }
 
        for (int i = 0; i < countTable.length; i++) {
@@ -60,9 +81,9 @@ public class Season {
                 for (int l = 0; l < countTable[delta]; l++) {
                     localTable[l] = seasonRank.totalStat[l + delta].teamName;
                 }
-                SeasonRank matchArrSort = new SeasonRank(localTable);
+                SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
+                // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
                 showRankTable(matchArrSort.totalStat);
-
                 if (i+countTable[delta]>countTable.length){
                     break;
                 } else{
@@ -87,8 +108,8 @@ public class Season {
         int[] arr = new int[]{0, 0};
         for (int i=0; i<nowSeason.seasonSchedule.length;i++){
             for (int k=0; k<nowSeason.seasonSchedule[i].length;k++){
-                if((nowSeason.seasonSchedule[i][k].homeTeamName==nameHome)&&
-                        (nowSeason.seasonSchedule[i][k].guestTeamName==nameGuest)){
+                if((nowSeason.seasonSchedule[i][k].homeTeamName == nameHome)&&
+                        (nowSeason.seasonSchedule[i][k].guestTeamName == nameGuest)){
                     arr = new int[]{i, k};
                 }
             }
@@ -98,14 +119,14 @@ public class Season {
     }
 
     void refreshSeasonSchedule(Season seasonName, MatchProtocol matchProtocol){
-        // обновление  SeasonRank RankTable на основе новых MatchProtocol в системе.
+        // обновление  SeasonRank RankTable на основе поданных на вход MatchProtocol в системе.
         int[] tour = dateMatchProtocol(seasonName, matchProtocol.homeTeamName,matchProtocol.guestTeamName);
         seasonName.seasonSchedule[tour[0]][tour[1]].discoverMatchResult(seasonName.seasonSchedule[tour[0]][tour[1]]);
         refreshSeasonRank(seasonName, matchProtocol);
     }
 
     void refreshSeasonRank(Season seasonName, MatchProtocol matchProtocol){
-                     for (int l = 0; l < seasonName.qtyOfTeam; l++) {
+                    for (int l = 0; l < seasonName.qtyOfTeam; l++) {
                     if (seasonName.seasonRank.homeStat[l].teamName == matchProtocol.homeTeamName) {
                         seasonName.seasonRank.homeStat[l].gameScore += matchProtocol.homeGameScore;
                         seasonName.seasonRank.homeStat[l].goalScored += matchProtocol.homeTeamGoalScore;
@@ -157,6 +178,59 @@ public class Season {
 
     }
 
+    void refreshSeasonRank(SeasonRank seasonRankName, MatchProtocol matchProtocol){
+        for (int l = 0; l < seasonRankName.guestStat.length; l++) {
+            if (seasonRankName.homeStat[l].teamName == matchProtocol.homeTeamName) {
+                seasonRankName.homeStat[l].gameScore += matchProtocol.homeGameScore;
+                seasonRankName.homeStat[l].goalScored += matchProtocol.homeTeamGoalScore;
+                seasonRankName.homeStat[l].goalMissed += matchProtocol.guestTeamGoalScore;
+                seasonRankName.homeStat[l].winMatch+= matchProtocol.homeWinMatch;
+                seasonRankName.homeStat[l].drawMatch+= matchProtocol.homeDrawMatch;
+                seasonRankName.homeStat[l].looseMatch+= matchProtocol.homeLooseMatch;
+                seasonRankName.homeStat[l].qtyYellowCard+= matchProtocol.homeTeamYellowCard;
+                seasonRankName.homeStat[l].qtyRedCard+= matchProtocol.homeTeamRedCard;
+                seasonRankName.homeStat[l].goalScoredPen+= matchProtocol.homeTeamPenScore;
+                seasonRankName.homeStat[l].goalMissedPen+= matchProtocol.guestTeamPenScore;
+
+                seasonRankName.totalStat[l].gameScore = seasonRankName.homeStat[l].gameScore + seasonRankName.guestStat[l].gameScore;
+                seasonRankName.totalStat[l].goalScored = seasonRankName.homeStat[l].goalScored + seasonRankName.guestStat[l].goalScored;
+                seasonRankName.totalStat[l].goalMissed = seasonRankName.homeStat[l].goalMissed + seasonRankName.guestStat[l].goalMissed;
+                seasonRankName.totalStat[l].winMatch = seasonRankName.homeStat[l].winMatch + seasonRankName.guestStat[l].winMatch;
+                seasonRankName.totalStat[l].drawMatch = seasonRankName.homeStat[l].drawMatch + seasonRankName.guestStat[l].drawMatch;
+                seasonRankName.totalStat[l].looseMatch = seasonRankName.homeStat[l].looseMatch + seasonRankName.guestStat[l].looseMatch;
+                seasonRankName.totalStat[l].qtyYellowCard = seasonRankName.homeStat[l].qtyYellowCard + seasonRankName.guestStat[l].qtyYellowCard;
+                seasonRankName.totalStat[l].qtyRedCard = seasonRankName.homeStat[l].qtyRedCard + seasonRankName.guestStat[l].qtyRedCard;
+                seasonRankName.totalStat[l].goalScoredPen = seasonRankName.homeStat[l].goalScoredPen + seasonRankName.guestStat[l].goalScoredPen;
+                seasonRankName.totalStat[l].goalMissedPen = seasonRankName.homeStat[l].goalMissedPen + seasonRankName.guestStat[l].goalMissedPen;
+
+            }
+            if (seasonRankName.guestStat[l].teamName == matchProtocol.guestTeamName) {
+                seasonRankName.guestStat[l].gameScore += matchProtocol.guestGameScore;
+                seasonRankName.guestStat[l].goalScored += matchProtocol.guestTeamGoalScore;
+                seasonRankName.guestStat[l].goalMissed += matchProtocol.homeTeamGoalScore;
+                seasonRankName.guestStat[l].winMatch+= matchProtocol.guestWinMatch;
+                seasonRankName.guestStat[l].drawMatch+= matchProtocol.guestDrawMatch;
+                seasonRankName.guestStat[l].looseMatch+= matchProtocol.guestLooseMatch;
+                seasonRankName.guestStat[l].qtyYellowCard+= matchProtocol.guestTeamYellowCard;
+                seasonRankName.guestStat[l].qtyRedCard+= matchProtocol.guestTeamRedCard;
+                seasonRankName.guestStat[l].goalScoredPen+= matchProtocol.guestTeamPenScore;
+                seasonRankName.guestStat[l].goalMissedPen+= matchProtocol.homeTeamPenScore;
+            }
+
+            seasonRankName.totalStat[l].gameScore = seasonRankName.homeStat[l].gameScore + seasonRankName.guestStat[l].gameScore;
+            seasonRankName.totalStat[l].goalScored = seasonRankName.homeStat[l].goalScored + seasonRankName.guestStat[l].goalScored;
+            seasonRankName.totalStat[l].goalMissed = seasonRankName.homeStat[l].goalMissed + seasonRankName.guestStat[l].goalMissed;
+            seasonRankName.totalStat[l].winMatch = seasonRankName.homeStat[l].winMatch + seasonRankName.guestStat[l].winMatch;
+            seasonRankName.totalStat[l].drawMatch = seasonRankName.homeStat[l].drawMatch + seasonRankName.guestStat[l].drawMatch;
+            seasonRankName.totalStat[l].looseMatch = seasonRankName.homeStat[l].looseMatch + seasonRankName.guestStat[l].looseMatch;
+            seasonRankName.totalStat[l].qtyYellowCard = seasonRankName.homeStat[l].qtyYellowCard + seasonRankName.guestStat[l].qtyYellowCard;
+            seasonRankName.totalStat[l].qtyRedCard = seasonRankName.homeStat[l].qtyRedCard + seasonRankName.guestStat[l].qtyRedCard;
+            seasonRankName.totalStat[l].goalScoredPen = seasonRankName.homeStat[l].goalScoredPen + seasonRankName.guestStat[l].goalScoredPen;
+            seasonRankName.totalStat[l].goalMissedPen = seasonRankName.homeStat[l].goalMissedPen + seasonRankName.guestStat[l].goalMissedPen;
+        }
+
+    }
+
 
     Season(){ // конструктор сезона, заполнение его полей
         qtyOfTeam = 4; // кол-во команд в данном розыгрыше
@@ -172,4 +246,3 @@ public class Season {
         seasonRank = new SeasonRank(teamList);
     }
 }
-
