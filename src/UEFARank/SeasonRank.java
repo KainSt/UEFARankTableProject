@@ -1,3 +1,5 @@
+package UEFARank;
+
 class SeasonRank {
     /// команда,кол-во выигранных, ничья, проигранно, ГЗ, ГП, очки, ЖК, КК, ГЗпенальти, ГПпенальти
     TeamResult[] homeStat, guestStat, totalStat;

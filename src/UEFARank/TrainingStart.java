@@ -1,3 +1,5 @@
+package UEFARank;
+
 public class TrainingStart {
 
     public static void main(String args[]) {
@@ -10,8 +12,6 @@ public class TrainingStart {
         }
     }
     System.out.println(" ");
-    j1.showRankTable(j1.seasonRank.homeStat);
-    j1.showRankTable(j1.seasonRank.guestStat);
     j1.showRankTable(j1.seasonRank.totalStat);
     j1.sortRankTable(j1);
     j1.showRankTable(j1.seasonRank.totalStat);

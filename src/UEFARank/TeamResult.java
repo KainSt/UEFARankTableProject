@@ -1,4 +1,6 @@
-    class TeamResult {
+package UEFARank;
+
+class TeamResult {
         /// команда,кол-во выигранных, ничья, проигранно, ГЗ, ГП, очки, ЖК, КК, ГЗпенальти, ГПпенальти
         String teamName;
         int winMatch, drawMatch, looseMatch, goalScored, goalMissed, gameScore, qtyYellowCard, qtyRedCard, goalScoredPen, goalMissedPen;

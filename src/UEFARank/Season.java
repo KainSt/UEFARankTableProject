@@ -1,3 +1,5 @@
+package UEFARank;
+
 import java.util.Arrays;
 
 public class Season {
@@ -8,7 +10,7 @@ public class Season {
             {1,2,3,0},{0,1,2,3},{2,0,1,3},{0,2,3,1},{2,1,0,3},{1,0,3,2}
     };
     MatchProtocol[][] seasonSchedule; // расписаниие игр, где каждая пара представлена протоколом встречи команд
-    SeasonRank seasonRank; // итоговые таблицы дома/в гостях/тотал - на основе обработанных протоколов  MatchProtocol
+    SeasonRank seasonRank; // итоговые таблицы дома/в гостях/тотал - на основе обработанных протоколов  UEFARank.MatchProtocol
 
     String[] createGroup (int qtyOfTeam){
         /// список из 4*8 = 32 команд, которые участвуют в соревновании
@@ -69,10 +71,9 @@ public class Season {
             }
         }
 
-        for (int i = 0; i < countTable.length; i++) {
+       /* for (int i = 0; i < countTable.length; i++) {
                System.out.println(countTable[i]);
-        }
-
+        }*/
        for (int i = 0; i < countTable.length; i++) {
             if (countTable[i] > 1) {
                 int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
@@ -82,6 +83,7 @@ public class Season {
                     localTable[l] = seasonRank.totalStat[l + delta].teamName;
                 }
                 SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
+                Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
                 // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
                 showRankTable(matchArrSort.totalStat);
                 if (i+countTable[delta]>countTable.length){
@@ -119,7 +121,7 @@ public class Season {
     }
 
     void refreshSeasonSchedule(Season seasonName, MatchProtocol matchProtocol){
-        // обновление  SeasonRank RankTable на основе поданных на вход MatchProtocol в системе.
+        // обновление  UEFARank.SeasonRank RankTable на основе поданных на вход UEFARank.MatchProtocol в системе.
         int[] tour = dateMatchProtocol(seasonName, matchProtocol.homeTeamName,matchProtocol.guestTeamName);
         seasonName.seasonSchedule[tour[0]][tour[1]].discoverMatchResult(seasonName.seasonSchedule[tour[0]][tour[1]]);
         refreshSeasonRank(seasonName, matchProtocol);

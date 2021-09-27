@@ -1,3 +1,5 @@
+package UEFARank;
+
 public class MatchProtocol{
     String homeTeamName, guestTeamName, typeGame;
     int homeTeamGoalScore, guestTeamGoalScore, homeTeamYellowCard, homeTeamRedCard,homeTeamPenScore, guestTeamPenScore,

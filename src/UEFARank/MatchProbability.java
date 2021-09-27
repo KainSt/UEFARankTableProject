@@ -1,3 +1,5 @@
+package UEFARank;
+
 public class MatchProbability {
     public static boolean isPenaltyGoal()  {
         ///Вероятность взятия ворот при исполнении пенальти оценивается от 72 % до 86 %
