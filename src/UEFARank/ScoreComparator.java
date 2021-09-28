@@ -14,4 +14,6 @@ public class ScoreComparator implements Comparator<TeamResult> {
        }
         return o2.gameScore- o1.gameScore;
        }
+
+
 }

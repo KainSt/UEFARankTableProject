@@ -59,40 +59,57 @@ public class Season {
         return false;
     }
 
+    private int[] countTableArr(SeasonRank seasonRank) {
+        int[] countTable = new int[seasonRank.totalStat.length];
 
-    void sortRankTable(Season seasonName) {// сортировка с поиском строк с одинаковым кол-вом очков
-      Arrays.sort(seasonName.seasonRank.totalStat, new ScoreComparator());
-      int[] countTable = new int[seasonRank.totalStat.length];
-      for (int i = 0; i < countTable.length; i++) {
+        for (int i = 0; i < countTable.length; i++) { // таблица, которая отражает сколько раз это кол-во очков встречается в таблице
             for (int k = 0; k < countTable.length; k++) {
                 if (seasonRank.totalStat[i].gameScore == seasonRank.totalStat[k].gameScore) {
-                countTable[i]++;
+                    countTable[i]++;
                 }
             }
         }
+        return countTable;
+    }
 
-       /* for (int i = 0; i < countTable.length; i++) {
-               System.out.println(countTable[i]);
-        }*/
-       for (int i = 0; i < countTable.length; i++) {
-            if (countTable[i] > 1) {
-                int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
+    private boolean isEqualScore (int[] arr){
 
-                String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
-                for (int l = 0; l < countTable[delta]; l++) {
-                    localTable[l] = seasonRank.totalStat[l + delta].teamName;
+        int sum = 0;
+        for (int k: arr){
+            sum += arr[k];
+        }
+        return  (sum > arr.length);
+    }
+
+    void sortRankTable(Season seasonName) {// сортировка с поиском строк с одинаковым кол-вом очков
+      Arrays.sort(seasonName.seasonRank.totalStat, new ScoreComparator());
+        int[] countTable = countTableArr(seasonName.seasonRank);
+        if (isEqualScore (countTable)) {
+            for (int i = 0; i < countTable.length; i++) {
+                if (countTable[i] > 1) {
+                    int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
+                    String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
+                    for (int l = 0; l < countTable[delta]; l++) {
+                        localTable[l] = seasonRank.totalStat[l + delta].teamName;
+                    }
+
+                    SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
+                    Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
+                    int[] matchCountTable = countTableArr(matchArrSort);
+                    for (int t:matchCountTable){
+                        System.out.println(matchCountTable[t]);
+                    }
+                    // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
+                    showRankTable(matchArrSort.totalStat);
+                    // вставить в массив имена команд в правильном порядке, перед выходом обновить таблицу
+                    if (i + countTable[delta] > countTable.length) {
+                        break;
+                    } else {
+                        i = i + countTable[delta] - 1;
+                    }
                 }
-                SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
-                Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
-                // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
-                showRankTable(matchArrSort.totalStat);
-                if (i+countTable[delta]>countTable.length){
-                    break;
-                } else{
-                    i = i+countTable[delta]-1;
-                }
+
             }
-
         }
     }
 
