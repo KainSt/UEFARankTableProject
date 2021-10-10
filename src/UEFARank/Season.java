@@ -96,9 +96,6 @@ public class Season {
                     SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
                     Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
                     int[] matchCountTable = countTableArr(matchArrSort);
-                    for (int t:matchCountTable){
-                        System.out.println(matchCountTable[t]);
-                    }
                     // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
                     showRankTable(matchArrSort.totalStat);
                     // вставить в массив имена команд в правильном порядке, перед выходом обновить таблицу
