@@ -72,7 +72,7 @@ public class Season {
         return countTable;
     }
 
-    private boolean isEqualScore (int[] arr){
+    private boolean isEqualScore (int[] arr){ // возвращает true если в таблице встречается больше одного раза одно кол-во очков.
 
         int sum = 0;
         for (int k: arr){
@@ -95,7 +95,9 @@ public class Season {
 
                     SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
                     Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
-                    int[] matchCountTable = countTableArr(matchArrSort);
+
+
+
                     // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
                     showRankTable(matchArrSort.totalStat);
                     // вставить в массив имена команд в правильном порядке, перед выходом обновить таблицу
@@ -103,7 +105,7 @@ public class Season {
                         break;
                     } else {
                         i = i + countTable[delta] - 1;
-                    }
+                    } // выход из перебора, чтобы не выходить за пределы диапазона
                 }
 
             }
