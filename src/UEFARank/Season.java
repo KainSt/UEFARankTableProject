@@ -112,6 +112,44 @@ public class Season {
         }
     }
 
+    void sortSeasonRankTable(SeasonRank seasonRank, MatchProtocol[][] seasonSchedule, String stepOfSort) {// сортировка с поиском строк с одинаковым кол-вом очков
+        switch (stepOfSort) {
+            case ("A"):
+                Arrays.sort(seasonRank.totalStat, new ScoreComparator());
+                if (isEqualScore(countTableArr(seasonRank))) {
+                    int[] countTable = countTableArr(seasonRank);
+                    for (int i = 0; i < countTable.length; i++) {
+                        if (countTable[i] > 1) {
+                            int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
+                            String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
+                            for (int l = 0; l < countTable[delta]; l++) {
+                                localTable[l] = seasonRank.totalStat[l + delta].teamName;
+                            }
+
+                           sortSeasonRankTable(refreshSeasonRank(seasonSchedule, localTable),seasonSchedule,"B");
+
+
+
+                            if (i + countTable[delta] > countTable.length) {
+                                break;
+                            } else {
+                                i = i + countTable[delta] - 1;
+                            } // выход из перебора, чтобы не выходить за пределы диапазона
+                        }
+
+                    }
+
+                }
+        else break;
+
+        case ("B"):
+        Arrays.sort(seasonRank.totalStat, new ScoreComparator());
+        break;
+
+    }
+
+    }
+
     void showRankTable(TeamResult[] arr){ { // отображение турнирной таблицы
             for (int i = 0; i<arr.length; i++){
                 System.out.println(" W/D/L: " +arr[i].winMatch+"-"  +arr[i].drawMatch+"-" + arr[i].looseMatch + ", ГЗ-ГП: " + arr[i].goalScored
