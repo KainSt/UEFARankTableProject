@@ -1,5 +1,6 @@
 package UEFARank;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Season {
@@ -116,7 +117,7 @@ public class Season {
         switch (stepOfSort) {
             case ("A"):
                 Arrays.sort(seasonRank.totalStat, new ScoreComparator());
-                if (isEqualScore(countTableArr(seasonRank))) {
+                if (isEqualScore(countTableArr(seasonRank))&(countTableArr(seasonRank).length>2)) {
                     int[] countTable = countTableArr(seasonRank);
                     for (int i = 0; i < countTable.length; i++) {
                         if (countTable[i] > 1) {
@@ -126,11 +127,23 @@ public class Season {
                                 localTable[l] = seasonRank.totalStat[l + delta].teamName;
                             }
 
-                           sortSeasonRankTable(refreshSeasonRank(seasonSchedule, localTable),seasonSchedule,"B");
+                          SeasonRank localMatchArr = refreshSeasonRank(seasonSchedule, localTable);
+                          SeasonRank localMatchArrBefore = refreshSeasonRank(seasonSchedule, localTable);
+                            System.out.println("созданы таблицы до и после");
+                            showRankTable(localMatchArr.totalStat);
+                            showRankTable(localMatchArrBefore.totalStat);
+                            System.out.println(localMatchArrBefore.equals(localMatchArr));
+                           sortSeasonRankTable(localMatchArr,seasonSchedule,"A");
+                            System.out.println("таблица до отсортирована");
+                            showRankTable(localMatchArr.totalStat);
+                            showRankTable(localMatchArrBefore.totalStat);
 
+                           if (localMatchArrBefore.equals(localMatchArr)){
 
+                               sortSeasonRankTable(localMatchArr,seasonSchedule,"B");
+                           }
 
-                            if (i + countTable[delta] > countTable.length) {
+                           if (i + countTable[delta] > countTable.length) {
                                 break;
                             } else {
                                 i = i + countTable[delta] - 1;
@@ -140,10 +153,15 @@ public class Season {
                     }
 
                 }
-        else break;
+        else {System.out.println("дублей очков нет");
+
+              break;
+                }
 
         case ("B"):
-        Arrays.sort(seasonRank.totalStat, new ScoreComparator());
+        System.out.println("сортируем по разнице голов");
+        Arrays.sort(seasonRank.totalStat, new SuperiorGoalDifferenceComparator());
+        showRankTable(seasonRank.totalStat);
         break;
 
     }
