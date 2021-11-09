@@ -125,23 +125,35 @@ public class Season {
 
 
    String [] sortRankTable(MatchProtocol[][] seasonSchedule, String[] teamList, String stepOfSort) {// сортировка с поиском строк с одинаковым кол-вом очков
-        String [] arrReturn = new String[teamList.length];
-            /*for (int k=0; k <teamList.length;k++){
-            arrReturn[k] = teamList[k];
-            }*/
+       String [] arrReturn = teamList.clone();
+       System.out.println("");
+                System.out.println("начали сортировку");
+           for (String s: arrReturn){
+                System.out.println(s);
+            }
         switch (stepOfSort) {
             case ("A"):
                 /// нужно сформировать таблицу для сортировки.
-               SeasonRank preSortTable = refreshSeasonRank(seasonSchedule, teamList);
+               SeasonRank preSortTable = refreshSeasonRank(seasonSchedule, arrReturn);
                /// сортируем.
                Arrays.sort(preSortTable.totalStat, new ScoreComparator());
                /// итоги сортировки мы должны сохранить в тот массив, который вернём обратно
                 for (int k=0; k <preSortTable.totalStat.length;k++){
                     arrReturn[k] = preSortTable.totalStat[k].teamName;
                 }
+                System.out.println("");
+                System.out.println("отсортировали");
+                for (String s: arrReturn){
+                    System.out.println(s);
+                }
                 /// ищем кол-во команд с равным кол-вом очков
                 // строим описательную таблицу, отражающую структуру распределения очков в Тотал
                int[] countTable = countTableArr(preSortTable);
+                System.out.println("");
+                System.out.println("посчитали совпадение очков");
+                for (int s: countTable){
+                    System.out.println(s);
+                }
                // проводим проверку, что в описательном массиве наличие команд с равным кол-вом очков
                 // если таких команд нет, то сортировка выполнена
                 if (isEqualScore(countTable)){
@@ -158,7 +170,12 @@ public class Season {
                                 int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
                                 String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
                                 for (int l = 0; l < countTable[delta]; l++) {
-                                    localTable[l] = seasonRank.totalStat[l + delta].teamName;
+                                    localTable[l] = preSortTable.totalStat[l + delta].teamName;
+                                }
+                                System.out.println("");
+                                System.out.println("localTable");
+                                for (String s: localTable){
+                                    System.out.println(s);
                                 }
                                 String [] preReturnArr = new String [localTable.length];
                                 preReturnArr = sortRankTable(seasonSchedule,localTable,"A");
