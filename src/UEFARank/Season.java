@@ -92,58 +92,25 @@ public class Season {
         return  max;
     }
 
-    /*void sortRankTable(Season seasonName) {// сортировка с поиском строк с одинаковым кол-вом очков
-      Arrays.sort(seasonName.seasonRank.totalStat, new ScoreComparator());
-        int[] countTable = countTableArr(seasonName.seasonRank);
-        if (isEqualScore (countTable)) {
-            for (int i = 0; i < countTable.length; i++) {
-                if (countTable[i] > 1) {
-                    int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
-                    String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
-                    for (int l = 0; l < countTable[delta]; l++) {
-                        localTable[l] = seasonRank.totalStat[l + delta].teamName;
-                    }
-
-                    SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
-                    Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
-
-
-
-                    // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
-                    showRankTable(matchArrSort.totalStat);
-                    // вставить в массив имена команд в правильном порядке, перед выходом обновить таблицу
-                    if (i + countTable[delta] > countTable.length) {
-                        break;
-                    } else {
-                        i = i + countTable[delta] - 1;
-                    } // выход из перебора, чтобы не выходить за пределы диапазона
-                }
-
-            }
-        }
-    }*/
-
-
    String [] sortRankTable(MatchProtocol[][] seasonSchedule, String[] teamList, String stepOfSort) {// сортировка с поиском строк с одинаковым кол-вом очков
-       String [] arrReturn = teamList.clone();
-       System.out.println("");
-                System.out.println("начали сортировку");
-           for (String s: arrReturn){
-                System.out.println(s);
+            System.out.println("");
+            System.out.println("начали сортировку");
+           for (String s: teamList){
+             System.out.println(s);
             }
         switch (stepOfSort) {
             case ("A"):
                 /// нужно сформировать таблицу для сортировки.
-               SeasonRank preSortTable = refreshSeasonRank(seasonSchedule, arrReturn);
+               SeasonRank preSortTable = refreshSeasonRank(seasonSchedule, teamList);
                /// сортируем.
                Arrays.sort(preSortTable.totalStat, new ScoreComparator());
                /// итоги сортировки мы должны сохранить в тот массив, который вернём обратно
                 for (int k=0; k <preSortTable.totalStat.length;k++){
-                    arrReturn[k] = preSortTable.totalStat[k].teamName;
+                    teamList[k] = preSortTable.totalStat[k].teamName;
                 }
                 System.out.println("");
                 System.out.println("отсортировали");
-                for (String s: arrReturn){
+                for (String s: teamList){
                     System.out.println(s);
                 }
                 /// ищем кол-во команд с равным кол-вом очков
@@ -177,6 +144,7 @@ public class Season {
                                 for (String s: localTable){
                                     System.out.println(s);
                                 }
+
                                 String [] preReturnArr = new String [localTable.length];
                                 preReturnArr = sortRankTable(seasonSchedule,localTable,"A");
                                 for (int l = 0; l < countTable[delta]; l++) {
@@ -207,95 +175,12 @@ public class Season {
         }
        System.out.println("----------");
          for (int k=0; k <teamList.length;k++){
-          System.out.println( arrReturn[k] );
+          System.out.println( teamList[k] );
             }
        System.out.println("----------");
-        return arrReturn;
-    }
-        /*Arrays.sort(seasonName.seasonRank.totalStat, new ScoreComparator());
-        int[] countTable = countTableArr(seasonName.seasonRank);
-        if (isEqualScore (countTable)) {
-            for (int i = 0; i < countTable.length; i++) {
-                if (countTable[i] > 1) {
-                    int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
-                    String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
-                    for (int l = 0; l < countTable[delta]; l++) {
-                        localTable[l] = seasonRank.totalStat[l + delta].teamName;
-                    }
-
-                    SeasonRank matchArrSort = refreshSeasonRank(seasonName.seasonSchedule, localTable);
-                    Arrays.sort(matchArrSort.totalStat, new ScoreComparator());
-
-
-
-                    // заполняется данными по итогам игр, чтобы отсортировать вновь полученный массив
-                    showRankTable(matchArrSort.totalStat);
-                    // вставить в массив имена команд в правильном порядке, перед выходом обновить таблицу
-                    if (i + countTable[delta] > countTable.length) {
-                        break;
-                    } else {
-                        i = i + countTable[delta] - 1;
-                    } // выход из перебора, чтобы не выходить за пределы диапазона
-                }
-
-            }
-        }
-    }*/
-
-   /* void sortSeasonRankTable(SeasonRank seasonRank, MatchProtocol[][] seasonSchedule, String stepOfSort) {// сортировка с поиском строк с одинаковым кол-вом очков
-        switch (stepOfSort) {
-            case ("A"):
-                Arrays.sort(seasonRank.totalStat, new ScoreComparator());
-                if (isEqualScore(countTableArr(seasonRank))&(countTableArr(seasonRank).length>2)) {
-                    int[] countTable = countTableArr(seasonRank);
-                    for (int i = 0; i < countTable.length; i++) {
-                        if (countTable[i] > 1) {
-                            int delta = i;// показывает насколько различается положение в локальной таблице и в таблице имён команд
-                            String[] localTable = new String[countTable[i]];//список команд с равным кол-вом очков.
-                            for (int l = 0; l < countTable[delta]; l++) {
-                                localTable[l] = seasonRank.totalStat[l + delta].teamName;
-                            }
-
-                          SeasonRank localMatchArr = refreshSeasonRank(seasonSchedule, localTable);
-                          SeasonRank localMatchArrBefore = refreshSeasonRank(seasonSchedule, localTable);
-                            System.out.println("созданы таблицы до и после");
-                            showRankTable(localMatchArr.totalStat);
-                            showRankTable(localMatchArrBefore.totalStat);
-                            System.out.println(localMatchArrBefore.equals(localMatchArr));
-                           sortSeasonRankTable(localMatchArr,seasonSchedule,"A");
-                            System.out.println("таблица до отсортирована");
-                            showRankTable(localMatchArr.totalStat);
-                            showRankTable(localMatchArrBefore.totalStat);
-
-                           if (localMatchArrBefore.equals(localMatchArr)){
-
-                               sortSeasonRankTable(localMatchArr,seasonSchedule,"B");
-                           }
-
-                           if (i + countTable[delta] > countTable.length) {
-                                break;
-                            } else {
-                                i = i + countTable[delta] - 1;
-                            } // выход из перебора, чтобы не выходить за пределы диапазона
-                        }
-
-                    }
-
-                }
-        else {System.out.println("дублей очков нет");
-
-              break;
-                }
-
-        case ("B"):
-        System.out.println("сортируем по разнице голов");
-        Arrays.sort(seasonRank.totalStat, new SuperiorGoalDifferenceComparator());
-        showRankTable(seasonRank.totalStat);
-        break;
-
+        return teamList;
     }
 
-    }*/
 
     void showRankTable(TeamResult[] arr){ { // отображение турнирной таблицы
             for (int i = 0; i<arr.length; i++){
