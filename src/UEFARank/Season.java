@@ -1,6 +1,5 @@
 package UEFARank;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Season {
@@ -144,11 +143,12 @@ public class Season {
                                 for (String s: localTable){
                                     System.out.println(s);
                                 }
+                                showRankTable(preSortTable.totalStat);
 
-                                String [] preReturnArr = new String [localTable.length];
+                                String [] preReturnArr;
                                 preReturnArr = sortRankTable(seasonSchedule,localTable,"A");
                                 for (int l = 0; l < countTable[delta]; l++) {
-                                    seasonRank.totalStat[l + delta].teamName = preReturnArr[l];
+                                    teamList[l + delta] = preReturnArr[l];
                                 }
                                 if (i + countTable[delta] > countTable.length) {
                                     break;
@@ -171,9 +171,21 @@ public class Season {
             case ("B"):
                 System.out.println("----------");
                 System.out.println("Сортировка по ключу В");
+                System.out.println("");
+                System.out.println("начали сортировку");
+                for (String s: teamList){
+                    System.out.println(s);
+                }
+                preSortTable = refreshSeasonRank(seasonSchedule, teamList);
+                Arrays.sort(preSortTable.totalStat, new SuperiorGoalDifferenceComparator());
+                System.out.println("");
+                System.out.println("отсортировали В");
+                for (String s: teamList){
+                    System.out.println(s);
+                }
                 break;
         }
-       System.out.println("----------");
+       System.out.println("возвращаемый массив");
          for (int k=0; k <teamList.length;k++){
           System.out.println( teamList[k] );
             }
