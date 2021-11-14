@@ -86,13 +86,20 @@ public class Season {
         for (int k=1; k <arr.length;k++){
             if (arr[k]>max){
                 max = arr[k];
-            }
+            };
         }
         return  max;
     }
 
-   String [] sortRankTable(MatchProtocol[][] seasonSchedule, String[] teamList) {// сортировка с поиском строк с одинаковым кол-вом очков
-               /// нужно сформировать таблицу для сортировки.
+   String [] sortRankTable(MatchProtocol[][] seasonSchedule, String[] teamList, String stepOfSort) {// сортировка с поиском строк с одинаковым кол-вом очков
+            System.out.println("");
+            System.out.println("начали сортировку");
+           for (String s: teamList){
+             System.out.println(s);
+            }
+        switch (stepOfSort) {
+            case ("A"):
+                /// нужно сформировать таблицу для сортировки.
                SeasonRank preSortTable = refreshSeasonRank(seasonSchedule, teamList);
                /// сортируем.
                Arrays.sort(preSortTable.totalStat, new ScoreComparator());
@@ -100,13 +107,15 @@ public class Season {
                 for (int k=0; k <preSortTable.totalStat.length;k++){
                     teamList[k] = preSortTable.totalStat[k].teamName;
                 }
-                System.out.println();
+                System.out.println("");
                 System.out.println("отсортировали");
-                showRankTable(preSortTable.totalStat);
+                for (String s: teamList){
+                    System.out.println(s);
+                }
                 /// ищем кол-во команд с равным кол-вом очков
                 // строим описательную таблицу, отражающую структуру распределения очков в Тотал
                int[] countTable = countTableArr(preSortTable);
-                System.out.println();
+                System.out.println("");
                 System.out.println("посчитали совпадение очков");
                 for (int s: countTable){
                     System.out.println(s);
@@ -119,7 +128,8 @@ public class Season {
                         // если вся таблица состоит и команд с равным кол-вом очков, значит сортировка по очкам ничего больше не даст
                         // и нужно переходить к сортировке по другому принципу
                         System.out.println("нужно переходить к сортировке по другому принципу");
-
+                        String [] preReturnArr = new String [countTable.length];
+                        preReturnArr = sortRankTable(seasonSchedule,teamList,"B");
                     } else {
                         for (int i = 0; i < countTable.length; i++) {
                             if (countTable[i] > 1) {
@@ -128,14 +138,15 @@ public class Season {
                                 for (int l = 0; l < countTable[delta]; l++) {
                                     localTable[l] = preSortTable.totalStat[l + delta].teamName;
                                 }
-                                System.out.println();
+                                System.out.println("");
                                 System.out.println("localTable");
                                 for (String s: localTable){
                                     System.out.println(s);
                                 }
                                 showRankTable(preSortTable.totalStat);
+
                                 String [] preReturnArr;
-                                preReturnArr = sortRankTable(seasonSchedule,localTable);
+                                preReturnArr = sortRankTable(seasonSchedule,localTable,"A");
                                 for (int l = 0; l < countTable[delta]; l++) {
                                     teamList[l + delta] = preReturnArr[l];
                                 }
@@ -155,11 +166,29 @@ public class Season {
                     System.out.println("Сортировка закончена, по очкам совпадений нет.");
                 }
 
+               break;
 
-
-
+            case ("B"):
+                System.out.println("----------");
+                System.out.println("Сортировка по ключу В");
+                System.out.println("");
+                System.out.println("начали сортировку");
+                for (String s: teamList){
+                    System.out.println(s);
+                }
+                preSortTable = refreshSeasonRank(seasonSchedule, teamList);
+                Arrays.sort(preSortTable.totalStat, new SuperiorGoalDifferenceComparator());
+                System.out.println("");
+                System.out.println("отсортировали В");
+                for (String s: teamList){
+                    System.out.println(s);
+                }
+                break;
+        }
        System.out.println("возвращаемый массив");
-       showRankTable(refreshSeasonRank(seasonSchedule, teamList).totalStat);
+         for (int k=0; k <teamList.length;k++){
+          System.out.println( teamList[k] );
+            }
        System.out.println("----------");
         return teamList;
     }
@@ -179,8 +208,8 @@ public class Season {
         int[] arr = new int[]{0, 0};
         for (int i=0; i<nowSeason.seasonSchedule.length;i++){
             for (int k=0; k<nowSeason.seasonSchedule[i].length;k++){
-                if((nowSeason.seasonSchedule[i][k].homeTeamName.equals(nameHome))&&
-                        (nowSeason.seasonSchedule[i][k].guestTeamName.equals(nameGuest))){
+                if((nowSeason.seasonSchedule[i][k].homeTeamName == nameHome)&&
+                        (nowSeason.seasonSchedule[i][k].guestTeamName == nameGuest)){
                     arr = new int[]{i, k};
                 }
             }
@@ -198,7 +227,7 @@ public class Season {
 
     void refreshSeasonRank(Season seasonName, MatchProtocol matchProtocol){
                     for (int l = 0; l < seasonName.qtyOfTeam; l++) {
-                    if ((seasonName.seasonRank.homeStat[l].teamName.equals(matchProtocol.homeTeamName))){
+                    if (seasonName.seasonRank.homeStat[l].teamName == matchProtocol.homeTeamName) {
                         seasonName.seasonRank.homeStat[l].gameScore += matchProtocol.homeGameScore;
                         seasonName.seasonRank.homeStat[l].goalScored += matchProtocol.homeTeamGoalScore;
                         seasonName.seasonRank.homeStat[l].goalMissed += matchProtocol.guestTeamGoalScore;
@@ -222,7 +251,7 @@ public class Season {
                         seasonName.seasonRank.totalStat[l].goalMissedPen = seasonName.seasonRank.homeStat[l].goalMissedPen + seasonName.seasonRank.guestStat[l].goalMissedPen;
 
                     }
-                    if ((seasonName.seasonRank.guestStat[l].teamName.equals(matchProtocol.guestTeamName))){
+                    if (seasonName.seasonRank.guestStat[l].teamName == matchProtocol.guestTeamName) {
                         seasonName.seasonRank.guestStat[l].gameScore += matchProtocol.guestGameScore;
                         seasonName.seasonRank.guestStat[l].goalScored += matchProtocol.guestTeamGoalScore;
                         seasonName.seasonRank.guestStat[l].goalMissed += matchProtocol.homeTeamGoalScore;
@@ -251,7 +280,7 @@ public class Season {
 
     void refreshSeasonRank(SeasonRank seasonRankName, MatchProtocol matchProtocol){
         for (int l = 0; l < seasonRankName.guestStat.length; l++) {
-            if (seasonRankName.homeStat[l].teamName.equals(matchProtocol.homeTeamName)) {
+            if (seasonRankName.homeStat[l].teamName == matchProtocol.homeTeamName) {
                 seasonRankName.homeStat[l].gameScore += matchProtocol.homeGameScore;
                 seasonRankName.homeStat[l].goalScored += matchProtocol.homeTeamGoalScore;
                 seasonRankName.homeStat[l].goalMissed += matchProtocol.guestTeamGoalScore;
@@ -275,7 +304,7 @@ public class Season {
                 seasonRankName.totalStat[l].goalMissedPen = seasonRankName.homeStat[l].goalMissedPen + seasonRankName.guestStat[l].goalMissedPen;
 
             }
-            if (seasonRankName.guestStat[l].teamName.equals(matchProtocol.guestTeamName)) {
+            if (seasonRankName.guestStat[l].teamName == matchProtocol.guestTeamName) {
                 seasonRankName.guestStat[l].gameScore += matchProtocol.guestGameScore;
                 seasonRankName.guestStat[l].goalScored += matchProtocol.guestTeamGoalScore;
                 seasonRankName.guestStat[l].goalMissed += matchProtocol.homeTeamGoalScore;
