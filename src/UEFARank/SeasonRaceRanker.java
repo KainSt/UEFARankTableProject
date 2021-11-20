@@ -1,7 +1,7 @@
 package UEFARank;
 
 public class SeasonRaceRanker {
-
+/*
 
 
      void refreshSeasonRank(MatchProtocol[][] seasonSchedule, String[] teamList){
@@ -23,5 +23,5 @@ public class SeasonRaceRanker {
             }
         }
         return false;
-    }
+    }*/
 }

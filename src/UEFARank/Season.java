@@ -81,7 +81,7 @@ public class Season {
         return  (sum > arr.length);
     }
 
-    private int maxArrElement (int[] arr){ // возвращает true если в таблице встречается больше одного раза одно кол-во очков.
+    private int maxArrElement (int[] arr){ // возвращает самое большое кол-во повторений очков
         int max = arr[0];
         for (int k=1; k <arr.length;k++){
             if (arr[k]>max){
