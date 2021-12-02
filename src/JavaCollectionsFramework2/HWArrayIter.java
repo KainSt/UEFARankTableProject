@@ -2,6 +2,7 @@ package JavaCollectionsFramework2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class HWArrayIter {
@@ -46,37 +47,52 @@ public class HWArrayIter {
            System.out.print(listOfString.get(k)+" ");
            }*/
         List<String> listOfString = new ArrayList<>();
-        listOfString.add("роза");
+
+        listOfString.add("лира");
         listOfString.add("лоза");
-        listOfString.add("провоз");
-        listOfString.add("поролон");
+        listOfString.add("роза");
+       /* listOfString.add("поролон");
         listOfString.add("лень");
         listOfString.add("лань");
         listOfString.add("бронь");
-        listOfString.add("схрон");
+        listOfString.add("схрон");*/
+
 
         printList(listOfString);
-        fix(listOfString);
-        printList(listOfString);
+        System.out.println();
+       fix(listOfString);
+       printList(listOfString);
 
         }
 
     public static void fix(List<String> list){
-         for (int i = 0; i <list.size(); i++) {
-             if (list.get(i).contains("р") & list.get(i).contains("л")) {
-                 break;
-             }
-
-             if (list.get(i).contains("р")) {
-                     list.remove(i);
-
+        Iterator<String> iterator = list.iterator();
+        while(iterator.hasNext()) {
+          String element = iterator.next();
+          if (element.contains("р")&element.contains("л")) {
+              continue;
                  }
 
-             if (list.get(i).contains("л")) {
-                     list.add(i, list.get(i));
-                     i++;
-                 }
-             }
+          if (element.contains("р")) {
+              iterator.remove();
+              }
+
+
+        }
+
+         for(int i = 0; i< list.size();i++){
+         if (list.get(i).contains("р")&list.get(i).contains("л")) {
+                continue;
+            }
+
+            if (list.get(i).contains("л")) {
+                list.add(i,list.get(i));
+                i++;
+            }
+
+
+        }
+
          }
 
 
