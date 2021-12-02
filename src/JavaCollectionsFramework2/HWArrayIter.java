@@ -51,17 +51,19 @@ public class HWArrayIter {
         listOfString.add("лира");
         listOfString.add("лоза");
         listOfString.add("роза");
-       /* listOfString.add("поролон");
+        listOfString.add("поролон");
         listOfString.add("лень");
         listOfString.add("лань");
         listOfString.add("бронь");
-        listOfString.add("схрон");*/
+        listOfString.add("схрон");
 
 
+         printList(listOfString);
+         System.out.println();
+         fix(listOfString);
+         printList(listOfString);
+        doubleValues(listOfString);
         printList(listOfString);
-        System.out.println();
-       fix(listOfString);
-       printList(listOfString);
 
         }
 
@@ -95,6 +97,15 @@ public class HWArrayIter {
 
          }
 
+
+    public static void doubleValues(List<String> list){
+        for(int i = 0; i< list.size();i++){
+
+            list.set(i,list.get(i) + " " + list.get(i));
+
+            }
+
+     }
 
 
     public static void printList(List list){
