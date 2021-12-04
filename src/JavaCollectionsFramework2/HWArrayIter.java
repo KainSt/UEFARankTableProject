@@ -74,12 +74,9 @@ public class HWArrayIter {
           if (element.contains("р")&element.contains("л")) {
               continue;
                  }
-
           if (element.contains("р")) {
               iterator.remove();
               }
-
-
         }
 
          for(int i = 0; i< list.size();i++){
@@ -92,7 +89,6 @@ public class HWArrayIter {
                 i++;
             }
 
-
         }
 
          }
@@ -100,9 +96,7 @@ public class HWArrayIter {
 
     public static void doubleValues(List<String> list){
         for(int i = 0; i< list.size();i++){
-
             list.set(i,list.get(i) + " " + list.get(i));
-
             }
 
      }
