@@ -50,6 +50,9 @@ public class Cat {
             Cat nowPet = catIterator.next();
             nowPet.toString();
         }
+        for (Cat cat : catArray) {
+            cat.toString();
+        }
 
     }
 
