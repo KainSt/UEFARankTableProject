@@ -23,7 +23,7 @@ public class NMHomeWork {
             stringSet.add(reader.readLine());
         }
 
-       // Iterator<String> itOfStringSet = stringSet.iterator();
+
         for (String s : stringSet) {
             System.out.print(s +" ");
         }
