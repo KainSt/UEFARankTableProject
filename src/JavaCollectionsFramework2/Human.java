@@ -14,19 +14,16 @@ public class Human {
         this.name = name;
         this.sex = sex;
         this.age = age;
-        ArrayList<Human> kids = new ArrayList<>();
+        this.kids = new ArrayList<>();
     }
 
     Human(String name) {
         this.name = name;
-        ArrayList<Human> kids = new ArrayList<>();
-    }
+        }
 
    private String kidsPrint(Human human){
         String kidsList ="";
-        if (kids.isEmpty()){
-            return "";
-        }
+
        for (Human kid : kids) {
            kidsList = kidsList + " " + kid.name;
        }
@@ -51,9 +48,9 @@ public class Human {
        fedya.kids.add(misha);
        fedya.kids.add(mashaJr);
 
-      /* System.out.println(ivan.toString(ivan));
-       System.out.println(masha.toString(masha));
-       System.out.println(fedya.toString(fedya));*/
+      System.out.println(ivan.toString(ivan));
+      System.out.println(masha.toString(masha));
+      System.out.println(fedya.toString(fedya));
 
     }
 }
