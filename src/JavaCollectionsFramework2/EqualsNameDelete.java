@@ -23,13 +23,46 @@ public class EqualsNameDelete {
 
         Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()){
-            String s = iterator.next().getValue();
-            while (iterator.hasNext()){
-
-                if (iterator.next().getValue().equals(s)){
-                    System.out.println(s);
-                }
+            Map.Entry<String, String> element = iterator.next();
+            String s = element.getValue();
+            if (getCountTheSameFirstName(map, s)>1){
+              cleanElement (map, s);
+                iterator = map.entrySet().iterator();
             }
+
+        }
+
+        iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+    }
+
+    static int getCountTheSameFirstName(Map<String, String> map, String name){
+        int count = 0;
+        Iterator<Map.Entry<String,String>> iterator = map.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            if (iterator.next().getValue().equals(name)) {
+                count++;
+            }
+        }
+        return  count;
+    }
+
+    static void cleanElement (Map<String, String> map, String name){
+        Iterator<Map.Entry<String,String>> iterator2 = map.entrySet().iterator();
+
+
+        while (iterator2.hasNext()) {
+        Map.Entry<String,String> elementDelete = iterator2.next();
+
+            if (elementDelete.getValue().equals(name)){
+                map.remove(elementDelete.getKey());
+                iterator2 = map.entrySet().iterator();
+            }
+
         }
 
     }
