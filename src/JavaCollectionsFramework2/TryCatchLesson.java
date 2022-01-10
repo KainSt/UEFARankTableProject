@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 
 public class TryCatchLesson {
 
-    public static void processExceptions() {
+    public static void processExceptions() throws NoSuchFieldException {
         try {
             TryCatchLesson.method1();
             TryCatchLesson.method2();
@@ -15,6 +15,7 @@ public class TryCatchLesson {
             System.out.println("RemoteException");
         } catch (IOException e) {
             System.out.println("IOException");
+            throw new NoSuchFieldException();
         } catch (NoSuchFieldException e) {
             System.out.println("NoSuchFieldException");
         }
@@ -35,7 +36,13 @@ public class TryCatchLesson {
 
 
     public static void main(String[] args) {
-        processExceptions();
+
+
+        try {
+            processExceptions();
+        } catch (NoSuchFieldException e) {
+            System.out.println("NoSuchFieldException");
+        }
 
     }
 
